@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -76,5 +78,14 @@ public class SequenceTest {
         assertEquals(1, (int) map.get("1"));
         assertEquals(4, (int) map.get("2"));
         assertEquals(9, (int) map.get("3"));
+    }
+
+    @Test
+    public void testGroupBy() throws Exception {
+        LinkedHashMap<Integer, List<Integer>> groups = Sequence.of(0, 1, 2, 3, 4, 5, 6, 7).groupBy(x -> x % 3);
+        assertEquals(3, groups.size());
+        assertArrayEquals(new Integer[]{0, 3, 6}, groups.get(0).toArray());
+        assertArrayEquals(new Integer[]{1, 4, 7}, groups.get(1).toArray());
+        assertArrayEquals(new Integer[]{2, 5}, groups.get(2).toArray());
     }
 }

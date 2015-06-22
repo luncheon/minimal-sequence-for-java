@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * シーケンスをラップして操作するためのユーティリティを表します。
@@ -91,7 +93,7 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * シーケンスの各要素に対してアクションを実行します。
+     * 各要素に対してアクションを実行します。
      * @param action アクション
      */
     public void each(Consumer<? super T> action) {
@@ -101,7 +103,7 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * シーケンスの各要素に射影関数を適用して結果のシーケンスを返します。
+     * 各要素に射影関数を適用します。
      * @param mapper 射影関数
      * @param <R>    射影結果の型
      * @return       射影結果のシーケンス
@@ -115,7 +117,7 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * シーケンスの要素のうち、指定された条件を満たす要素のみ抽出したシーケンスを返します。
+     * 指定された条件を満たす要素のみ抽出します。
      * @param predicate 条件
      * @return          条件を満たす要素のシーケンス
      */
@@ -128,7 +130,7 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * シーケンスの末尾へ要素を追加したシーケンスを返します。
+     * 末尾へ要素を追加します。
      * @param after 追加要素
      * @return      シーケンス
      */
@@ -141,7 +143,7 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * シーケンスの末尾へ要素を追加したシーケンスを返します。
+     * 末尾へ要素を追加します。
      * @param after 追加要素
      * @return      シーケンス
      */
@@ -150,7 +152,7 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * シーケンスの先頭へ要素を追加したシーケンスを返します。
+     * 先頭へ要素を追加します。
      * @param before 追加要素
      * @return       シーケンス
      */
@@ -163,7 +165,7 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * シーケンスの先頭へ要素を追加したシーケンスを返します。
+     * 先頭へ要素を追加します。
      * @param before 追加要素
      * @return       シーケンス
      */
@@ -172,7 +174,7 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * シーケンスの最初の要素を返します。シーケンスが空の場合は nothing を返します。
+     * 最初の要素を返します。要素がない場合は nothing を返します。
      * @return 最初の要素
      */
     public Maybe<T> first() {
@@ -181,7 +183,7 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * シーケンスが単一の要素を持つ場合はその要素を返します。そうでない場合は nothing を返します。
+     * 単一の要素を持つ場合はその要素を返します。そうでない場合は nothing を返します。
      * @return 単一の要素
      */
     public Maybe<T> single() {
@@ -221,6 +223,26 @@ public final class Sequence<T> implements Iterable<T> {
         HashMap<K, V> result = new HashMap<K, V>();
         for (T item : items) {
             result.put(keySelector.apply(item), valueSelector.apply(item));
+        }
+        return result;
+    }
+
+    /**
+     * 同一のキーを持つ要素ごとにグルーピングします。
+     * @param keySelector 要素からグルーピングのキーを生成する射影関数
+     * @param <K>         グルーピングのキーの型
+     * @return            キーとグループの連想配列
+     */
+    public <K> LinkedHashMap<K, List<T>> groupBy(Function<? super T, ? extends K> keySelector) {
+        LinkedHashMap<K, List<T>> result = new LinkedHashMap<K, List<T>>();
+        for (T item : items) {
+            K key = keySelector.apply(item);
+            List<T> list = result.get(key);
+            if (list == null) {
+                list = new ArrayList<T>();
+                result.put(key, list);
+            }
+            list.add(item);
         }
         return result;
     }
