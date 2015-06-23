@@ -266,7 +266,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 640px;
+  max-width: 800px;
   padding: 20px 10px;
   margin: 0 auto;
 }
@@ -366,8 +366,13 @@ Full-Width Styles
 
 #footer_wrap {
   background: #212121;
+  text-align: center;
 }
 
+#footer_wrap p {
+  margin: 0 1em;
+  display: inline-block;
+}
 
 
 /*******************************************************************************
