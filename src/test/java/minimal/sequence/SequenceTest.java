@@ -42,8 +42,22 @@ public class SequenceTest {
 
     @Test
     public void testFilter() throws Exception {
-        assertArrayEquals(new Integer[]{2, 4}, Sequence.of(1, 2, 3, 4).filter(x -> x % 2 == 0).toArray());
+        assertArrayEquals(new Integer[]{2, 4, 2}, Sequence.of(1, 2, 3, 4, 3, 2, 1).filter(x -> x % 2 == 0).toArray());
         assertArrayEquals(new Integer[]{}, Sequence.<Integer>of().filter(x -> true).toArray());
+    }
+
+    @Test
+    public void testTakeWhile() throws Exception {
+        assertArrayEquals(new Integer[]{1, 2}, Sequence.of(1, 2, 3, 2, 1).takeWhile(x -> x < 3).toArray());
+        assertArrayEquals(new Integer[]{}, Sequence.of(1, 2, 3, 2, 1).takeWhile(x -> x > 1).toArray());
+        assertArrayEquals(new Integer[]{}, Sequence.<Integer>of().takeWhile(x -> true).toArray());
+    }
+
+    @Test
+    public void testSkipWhile() throws Exception {
+        assertArrayEquals(new Integer[]{3, 2, 1}, Sequence.of(1, 2, 3, 2, 1).skipWhile(x -> x < 3).toArray());
+        assertArrayEquals(new Integer[]{1, 2, 3, 2, 1}, Sequence.of(1, 2, 3, 2, 1).skipWhile(x -> x > 1).toArray());
+        assertArrayEquals(new Integer[]{}, Sequence.<Integer>of().skipWhile(x -> true).toArray());
     }
 
     @Test

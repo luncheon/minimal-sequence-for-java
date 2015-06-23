@@ -4,6 +4,8 @@ import minimal.sequence.function.Consumer;
 import minimal.sequence.function.Function;
 import minimal.sequence.function.Predicate;
 import minimal.sequence.iterator.ConcatenatedIterator;
+import minimal.sequence.iterator.ConditionedSkippingIterator;
+import minimal.sequence.iterator.ConditionedTakingIterator;
 import minimal.sequence.iterator.FilteredIterator;
 import minimal.sequence.iterator.MappedIterator;
 
@@ -120,7 +122,7 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * 指定された条件を満たす要素のみ抽出します。
+     * 条件を満たす要素のみ抽出します。
      * @param predicate 条件
      * @return          条件を満たす要素のシーケンス
      */
@@ -128,6 +130,34 @@ public final class Sequence<T> implements Iterable<T> {
         return new Sequence<T>(new Iterable<T>() {
             public Iterator<T> iterator() {
                 return new FilteredIterator<T>(items.iterator(), predicate);
+            }
+        });
+    }
+
+    /**
+     * 先頭から条件を満たす限り要素を抽出します。条件を満たさない最初の要素以降の要素を除外します。
+     * @param predicate 条件
+     * @return          先頭から条件を満たしている間の要素のシーケンス
+     */
+    public Sequence<T> takeWhile(final Predicate<? super T> predicate) {
+        return new Sequence<T>(new Iterable<T>() {
+            @Override
+            public Iterator<T> iterator() {
+                return new ConditionedTakingIterator<T>(items.iterator(), predicate);
+            }
+        });
+    }
+
+    /**
+     * 先頭から条件を満たす限り要素を除外します。条件を満たさない最初の要素以降の要素を抽出します。
+     * @param predicate 条件
+     * @return          先頭から条件を満たしている間の要素を除いたシーケンス
+     */
+    public Sequence<T> skipWhile(final Predicate<? super T> predicate) {
+        return new Sequence<T>(new Iterable<T>() {
+            @Override
+            public Iterator<T> iterator() {
+                return new ConditionedSkippingIterator<T>(items.iterator(), predicate);
             }
         });
     }
