@@ -66,6 +66,7 @@ public final class Maybe<T> implements Iterable<T> {
      * @param <T>     Maybe コンテナが保持するオブジェクトの型
      * @return        Maybe コンテナ
      */
+    @SafeVarargs
     public static <T> Maybe<T> anyOf(T... objects) {
         return Maybe.anyOf(Arrays.asList(objects));
     }
@@ -92,6 +93,7 @@ public final class Maybe<T> implements Iterable<T> {
      * @param <T>       Maybe コンテナが保持するオブジェクトの型
      * @return          Maybe コンテナ
      */
+    @SafeVarargs
     public static <T> Maybe<T> anyOfGet(Supplier<? extends T>... suppliers) {
         return anyOfGet(Arrays.asList(suppliers));
     }
@@ -102,6 +104,24 @@ public final class Maybe<T> implements Iterable<T> {
      */
     public Iterator<T> iterator() {
         return this == nothing ? Collections.<T>emptyIterator() : Collections.singletonList(object).iterator();
+    }
+
+    /**
+     * 値が存在する場合は値を返します。値が存在しない場合は引数値を返します。
+     * @param ifNothing 値が存在しない場合に返す値
+     * @return          値
+     */
+    public T orElse(T ifNothing) {
+        return this != nothing ? object : ifNothing;
+    }
+
+    /**
+     * 値が存在する場合は値を返します。値が存在しない場合はサプライヤーから値を生成して返します。
+     * @param ifNothing 値が存在しない場合に返す値のサプライヤー
+     * @return          値
+     */
+    public T orElse(Supplier<? extends T> ifNothing) {
+        return this != nothing ? object : ifNothing.get();
     }
 
     /**
@@ -144,10 +164,11 @@ public final class Maybe<T> implements Iterable<T> {
      * 値が存在する場合のみ操作を実行します。
      * @param action 操作
      */
-    public void each(Consumer<? super T> action) {
+    public Maybe<T> each(Consumer<? super T> action) {
         if (this != nothing) {
             action.accept(object);
         }
+        return this;
     }
 
     /**
@@ -155,12 +176,13 @@ public final class Maybe<T> implements Iterable<T> {
      * @param ifExistence 値が存在する場合の操作
      * @param ifNothing   値が存在しない場合の操作
      */
-    public void each(Consumer<? super T> ifExistence, Runnable ifNothing) {
+    public Maybe<T> each(Consumer<? super T> ifExistence, Runnable ifNothing) {
         if (this != nothing) {
             ifExistence.accept(object);
         } else {
             ifNothing.run();
         }
+        return this;
     }
 
     /**

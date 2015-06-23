@@ -72,6 +72,20 @@ public class SequenceTest {
     }
 
     @Test
+    public void testMinBy() throws Exception {
+        assertEquals(Maybe.of(1), Sequence.of(2, 4, 6, 1, 3, 5).minBy(x -> x));
+        assertEquals(Maybe.of(6), Sequence.of(2, 4, 6, 1, 3, 5).minBy(x -> -x));
+        assertEquals(Maybe.nothing, Sequence.<Integer>of().minBy(x -> x));
+    }
+
+    @Test
+    public void testMaxBy() throws Exception {
+        assertEquals(Maybe.of(6), Sequence.of(2, 4, 6, 1, 3, 5).maxBy(x -> x));
+        assertEquals(Maybe.of(1), Sequence.of(2, 4, 6, 1, 3, 5).maxBy(x -> -x));
+        assertEquals(Maybe.nothing, Sequence.<Integer>of().maxBy(x -> x));
+    }
+
+    @Test
     public void testToHashMap() throws Exception {
         HashMap<String, Integer> map = Sequence.of(1, 2, 3).toHashMap(String::valueOf, x -> x * x);
         assertEquals(3, map.size());

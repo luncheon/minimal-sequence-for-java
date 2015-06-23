@@ -5,8 +5,8 @@
 [minimal-sequence](https://github.com/luncheon/minimal-sequence/) は Java 5, 6, 7 のために最小限のシーケンス操作を提供します。<br>
 [Retrolambda](https://github.com/orfjackal/retrolambda/) の利用を前提としています。
 
-ただし、『[ブロートウェアと80/20の神話](http://japanese.joelonsoftware.com/Articles/StrategyLetterIV.html)』のとおり、「機能限定版の軽量ソフトウェア」は結局誰のニーズにも応えられないでしょう。<br>
-「最小限」のシーケンス操作とは「私にとっての最小限」なのであり、このリポジトリは結局のところ私のためのリポジトリに過ぎません。
+ただし、「最小限」のシーケンス操作とは「私にとっての最小限」です。<br>
+『[ブロートウェアと80/20の神話](http://japanese.joelonsoftware.com/Articles/StrategyLetterIV.html)』のとおり、「機能限定版の軽量ソフトウェア」は結局のところ誰のニーズにも応えられないでしょう。
 
 世の中には素敵なコレクションライブラリがたくさんあります。<br>
 是非そちらを使ってみてください。
@@ -29,26 +29,29 @@ Java 8 未満で実装するという苦行を何度も繰り返していると�
 変更したものや部分的に使用したものは、あなたのものになります。公開する場合は、あなたの名前の下で行って下さい。
 
 
-## 中身
+## 内容
 
-* Sequence&lt;T&gt;: Iterable&lt;T&gt; をラップして each, map, filter, groupBy などを提供する
-* Maybe&lt;T&gt;: 値が存在しない可能性のあるコンテナ (要素数 0 or 1 の Iterable) として each, map, filter などを提供する
+* Sequence&lt;T&gt;: Iterable&lt;T&gt; をラップして each, map, filter, groupBy などを提供します。
+* Maybe&lt;T&gt;: 値が存在しない可能性のあるコンテナ (要素数 0 or 1 の Iterable) として each, map, filter などを提供します。
 
 ### コード例
 
 ```
-Sequence.of("123", "456", "789")
+Sequence.of("123", "456", "789")        // <= Array or Iterable
         .map(Integer::valueOf)
         .prepend(11, 22).prepend(Arrays.asList(33, 44))
         .append(55, 66).append(Arrays.asList(77, 88))
         .filter(x -> x % 2 == 0)
-        .each(System.out::println); // 44 22 456 66 88
+        .each(System.out::println)      // 44 22 456 66 88
+        .first()                        // => Maybe<Integer>(44)
+        .each(System.out::println)      // 44
+        .orElse(() -> 56);              // => Integer(44)
 ```
 
-私が必要になれば以下のようなメソッドを追加するかもしれません。
+必要になれば以下のようなメソッドを追加するかもしれません。
 
 * reduce
 * sum
 * any, all
-* min, max, minBy, maxBy
+* min, max
 * その他なんでも

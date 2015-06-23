@@ -25,6 +25,17 @@ public class MaybeTest {
     }
 
     @Test
+    public void testOrElse() throws Exception {
+        assertEquals(Integer.valueOf(1), Maybe.of(1).orElse(2));
+        assertEquals(Integer.valueOf(2), Maybe.<Integer>nothing().orElse(2));
+        assertEquals(null, Maybe.<Integer>nothing().orElse((Integer) null));
+
+        assertEquals(Integer.valueOf(1), Maybe.of(1).orElse(() -> 2));
+        assertEquals(Integer.valueOf(2), Maybe.<Integer>nothing().orElse(() -> 2));
+        assertEquals(null, Maybe.<Integer>nothing().orElse(() -> null));
+    }
+
+    @Test
     public void testOr() throws Exception {
         assertEquals(Maybe.of(1), Maybe.of(1).or(Maybe.of(2)));
         assertEquals(Maybe.of(2), Maybe.<Integer>nothing().or(Maybe.of(2)));

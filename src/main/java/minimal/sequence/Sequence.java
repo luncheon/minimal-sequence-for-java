@@ -57,6 +57,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @param <T>   要素の型
      * @return      シーケンス
      */
+    @SafeVarargs
     public static <T> Sequence<T> of(T... items) {
         return of(Arrays.asList(items));
     }
@@ -95,11 +96,13 @@ public final class Sequence<T> implements Iterable<T> {
     /**
      * 各要素に対してアクションを実行します。
      * @param action アクション
+     * @return       このインスタンス
      */
-    public void each(Consumer<? super T> action) {
+    public Sequence<T> each(Consumer<? super T> action) {
         for (T item : items) {
             action.accept(item);
         }
+        return this;
     }
 
     /**
@@ -147,7 +150,8 @@ public final class Sequence<T> implements Iterable<T> {
      * @param after 追加要素
      * @return      シーケンス
      */
-    public Sequence<T> append(T... after) {
+    @SafeVarargs
+    public final Sequence<T> append(T... after) {
         return append(Arrays.asList(after));
     }
 
@@ -169,7 +173,8 @@ public final class Sequence<T> implements Iterable<T> {
      * @param before 追加要素
      * @return       シーケンス
      */
-    public Sequence<T> prepend(T... before) {
+    @SafeVarargs
+    public final Sequence<T> prepend(T... before) {
         return prepend(Arrays.asList(before));
     }
 
@@ -188,6 +193,26 @@ public final class Sequence<T> implements Iterable<T> {
      */
     public Maybe<T> single() {
         return Maybe.of(size() == 1 ? items.iterator().next() : null);
+    }
+
+    /**
+     * 比較可能な値への射影関数を適用して、結果が最小の要素を返します。
+     * @param comparableSelector 比較可能な値への射影関数
+     * @param <C>                比較可能な値の型
+     * @return                   最小要素
+     */
+    public <C extends Comparable<C>> Maybe<T> minBy(Function<? super T, ? extends C> comparableSelector) {
+        return minOrMaxBy(comparableSelector, true);
+    }
+
+    /**
+     * 比較可能な値への射影関数を適用して、結果が最大の要素を返します。
+     * @param comparableSelector 比較可能な値への射影関数
+     * @param <C>                比較可能な値の型
+     * @return                   最大要素
+     */
+    public <C extends Comparable<C>> Maybe<T> maxBy(Function<? super T, ? extends C> comparableSelector) {
+        return minOrMaxBy(comparableSelector, false);
     }
 
     /**
@@ -245,5 +270,31 @@ public final class Sequence<T> implements Iterable<T> {
             list.add(item);
         }
         return result;
+    }
+
+    /**
+     * 比較可能な値への射影関数を適用して、結果が最小または最大となる要素を返します。
+     * @param comparableSelector 比較可能な値への射影関数
+     * @param min                最小要素を取得する場合は true, 最大要素を取得する場合は false
+     * @param <C>                比較可能な値の型
+     * @return                   最小または最大の要素
+     */
+    private <C extends Comparable<C>> Maybe<T> minOrMaxBy(Function<? super T, ? extends C> comparableSelector, boolean min) {
+        Iterator<T> iterator = items.iterator();
+        if (!iterator.hasNext()) {
+            return Maybe.nothing();
+        }
+        T currentObject = iterator.next();
+        C currentValue = comparableSelector.apply(currentObject);
+        while (iterator.hasNext()) {
+            T object = iterator.next();
+            C value = comparableSelector.apply(object);
+            int compared = value.compareTo(currentValue);
+            if (min ? compared < 0 : compared > 0) {
+                currentObject = object;
+                currentValue = value;
+            }
+        }
+        return Maybe.of(currentObject);
     }
 }
