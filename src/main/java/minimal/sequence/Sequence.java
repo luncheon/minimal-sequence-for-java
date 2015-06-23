@@ -243,6 +243,34 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
+     * 条件を満たす要素が含まれているかどうかを調べます。
+     * @param predicate 条件
+     * @return          条件を満たす要素が含まれていれば true, そうでない場合は false
+     */
+    public boolean any(Predicate<? super T> predicate) {
+        for (T item : items) {
+            if (predicate.test(item)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * すべての要素が条件を満たしているかどうかを調べます。
+     * @param predicate 条件
+     * @return          すべての要素が条件を満たしていれば true, そうでない場合は false
+     */
+    public boolean all(Predicate<? super T> predicate) {
+        for (T item : items) {
+            if (!predicate.test(item)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * 比較可能な値への射影関数を適用して、結果が最小の要素を返します。
      * @param comparableSelector 比較可能な値への射影関数
      * @param <C>                比較可能な値の型

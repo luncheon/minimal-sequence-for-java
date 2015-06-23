@@ -93,6 +93,20 @@ public class SequenceTest {
     }
 
     @Test
+    public void testAny() throws Exception {
+        assertFalse(Sequence.of().any(x -> true));
+        assertTrue(Sequence.of(1, 2, 3).any(x -> x.equals(2)));
+        assertFalse(Sequence.of(1, 3, 5).any(x -> x.equals(2)));
+    }
+
+    @Test
+    public void testAll() throws Exception {
+        assertTrue(Sequence.of().all(x -> false));
+        assertFalse(Sequence.of(1, 2, 3).all(x -> x < 3));
+        assertTrue(Sequence.of(1, 2, 3).all(x -> x < 4));
+    }
+
+    @Test
     public void testMinBy() throws Exception {
         assertEquals(Maybe.of(1), Sequence.of(2, 4, 6, 1, 3, 5).minBy(x -> x));
         assertEquals(Maybe.of(6), Sequence.of(2, 4, 6, 1, 3, 5).minBy(x -> -x));
