@@ -31,8 +31,8 @@ Java 8 未満で実装するという苦行を何度も繰り返していると�
 
 ## 内容
 
-* Sequence&lt;T&gt;: Iterable&lt;T&gt; をラップして each, map, filter, takeWhile, any, groupBy などを提供します。
-* Maybe&lt;T&gt;: 値が存在しない可能性のあるコンテナ (要素数 0 or 1 の Iterable) として each, map, filter などを提供します。
+* [Sequence&lt;T&gt;](https://luncheon.github.io/minimal-sequence/javadoc/minimal/sequence/Sequence.html): Iterable&lt;T&gt; をラップして each, map, filter, takeWhile, any, groupBy などを提供します。
+* [Maybe&lt;T&gt;](https://luncheon.github.io/minimal-sequence/javadoc/minimal/sequence/Maybe.html): 値が存在しない可能性のあるコンテナ (要素数 0 or 1 の Iterable) として each, map, filter などを提供します。
 
 ### コード例
 
