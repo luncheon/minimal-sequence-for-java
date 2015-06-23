@@ -13,6 +13,7 @@ dependencies {
 
 compileJava {
     sourceCompatibility = 5
+    targetCompatibility = 5
 }
 
 compileTestJava {
