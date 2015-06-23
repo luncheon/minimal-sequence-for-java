@@ -163,6 +163,7 @@ public final class Maybe<T> implements Iterable<T> {
     /**
      * 値が存在する場合のみ操作を実行します。
      * @param action 操作
+     * @return       このインスタンス
      */
     public Maybe<T> each(Consumer<? super T> action) {
         if (this != nothing) {
@@ -175,6 +176,7 @@ public final class Maybe<T> implements Iterable<T> {
      * 値が存在する場合は値を引数に取る操作を実行します。値が存在しない場合は引数のない操作を実行します。
      * @param ifExistence 値が存在する場合の操作
      * @param ifNothing   値が存在しない場合の操作
+     * @return            このインスタンス
      */
     public Maybe<T> each(Consumer<? super T> ifExistence, Runnable ifNothing) {
         if (this != nothing) {

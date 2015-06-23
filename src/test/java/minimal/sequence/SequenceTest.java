@@ -65,6 +65,13 @@ public class SequenceTest {
     }
 
     @Test
+    public void testRest() throws Exception {
+        assertArrayEquals(new Integer[]{2, 3}, Sequence.of(1, 2, 3).rest().toArray());
+        assertArrayEquals(new Integer[]{}, Sequence.of(1).rest().toArray());
+        assertArrayEquals(new Integer[]{}, Sequence.of().rest().toArray());
+    }
+
+    @Test
     public void testSingle() throws Exception {
         assertEquals(Maybe.of(1), Sequence.of(1).single());
         assertEquals(Maybe.nothing, Sequence.of().single());
@@ -83,6 +90,13 @@ public class SequenceTest {
         assertEquals(Maybe.of(6), Sequence.of(2, 4, 6, 1, 3, 5).maxBy(x -> x));
         assertEquals(Maybe.of(1), Sequence.of(2, 4, 6, 1, 3, 5).maxBy(x -> -x));
         assertEquals(Maybe.nothing, Sequence.<Integer>of().maxBy(x -> x));
+    }
+
+    @Test
+    public void testJoinToString() throws Exception {
+        assertEquals("1, 2, 3", Sequence.of(1, 2, 3).joinToString(", "));
+        assertEquals("1", Sequence.of(1).joinToString(", "));
+        assertEquals("", Sequence.of().joinToString(", "));
     }
 
     @Test

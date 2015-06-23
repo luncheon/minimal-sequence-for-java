@@ -188,6 +188,23 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
+     * 最初の要素を除いた残りを返します。
+     * @return 最初の要素を除いた残りの要素のシーケンス
+     */
+    public Sequence<T> rest() {
+        return new Sequence<T>(new Iterable<T>() {
+            @Override
+            public Iterator<T> iterator() {
+                Iterator<T> iterator = items.iterator();
+                if (iterator.hasNext()) {
+                    iterator.next();
+                }
+                return iterator;
+            }
+        }, size == null ? null : size - 1);
+    }
+
+    /**
      * 単一の要素を持つ場合はその要素を返します。そうでない場合は nothing を返します。
      * @return 単一の要素
      */
@@ -213,6 +230,22 @@ public final class Sequence<T> implements Iterable<T> {
      */
     public <C extends Comparable<C>> Maybe<T> maxBy(Function<? super T, ? extends C> comparableSelector) {
         return minOrMaxBy(comparableSelector, false);
+    }
+
+    /**
+     * 各要素を区切り文字で区切って連結した文字列を生成します。
+     * @param delimiter 区切り文字
+     * @return          連結文字列
+     */
+    public String joinToString(String delimiter) {
+        StringBuilder builder = new StringBuilder();
+        for (T item : first()) {
+            builder.append(item);
+        }
+        for (T item : rest()) {
+            builder.append(delimiter).append(item);
+        }
+        return builder.toString();
     }
 
     /**
