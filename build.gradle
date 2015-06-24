@@ -25,7 +25,9 @@ tasks.withType(JavaCompile) {
 }
 
 javadoc {
-    options.encoding = "UTF-8"
+    options.noTimestamp = true
+    options.encoding = 'UTF-8'
+    options.charSet = 'UTF-8'
 }
 
 task sourcesJar(type: Jar, dependsOn:classes) {
