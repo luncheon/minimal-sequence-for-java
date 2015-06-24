@@ -198,6 +198,16 @@ public final class Maybe<T> implements Iterable<T> {
     }
 
     /**
+     * 値が存在する場合は射影関数を適用した結果の Maybe コンテナを返します。値が存在しない場合は nothing を返します。
+     * @param mapper 射影関数
+     * @param <R>    射影結果の Maybe コンテナが持つ値の型
+     * @return       射影結果
+     */
+    public <R> Maybe<R> flatMap(Function<? super T, ? extends Maybe<R>> mapper) {
+        return this == nothing ? Maybe.<R>nothing() : mapper.apply(object);
+    }
+
+    /**
      * 値が存在して指定の条件を満たす場合はこのインスタンスをそのまま返します。それ以外の場合は nothing を返します。
      * @param predicate 条件
      * @return          条件を満たす場合はこのインスタンス、そうでない場合は nothing

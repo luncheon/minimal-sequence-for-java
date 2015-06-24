@@ -3,6 +3,7 @@ package minimal.sequence;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -38,6 +39,13 @@ public class SequenceTest {
     public void testMap() throws Exception {
         assertArrayEquals(new Integer[]{1, 4, 9}, Sequence.of(1, 2, 3).map(x -> x * x).toArray());
         assertArrayEquals(new Integer[]{}, Sequence.<Integer>of().map(x -> x * x).toArray());
+    }
+
+    @Test
+    public void testFlatMap() throws Exception {
+        assertArrayEquals(new String[]{"2", "3", "4", "6", "6", "9"}, Sequence.of(1, 2, 3).flatMap(x -> Arrays.asList(String.valueOf(x * 2), String.valueOf(x * 3))).toArray());
+        assertArrayEquals(new String[]{}, Sequence.<Integer>of().flatMap(x -> Arrays.asList(String.valueOf(x * 2), String.valueOf(x * 3))).toArray());
+        assertArrayEquals(new String[]{}, Sequence.<Integer>of(1, 2, 3).flatMap(x -> Collections.emptyList()).toArray());
     }
 
     @Test

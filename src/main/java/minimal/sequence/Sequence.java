@@ -7,6 +7,7 @@ import minimal.sequence.iterator.ConcatenatedIterator;
 import minimal.sequence.iterator.ConditionedSkippingIterator;
 import minimal.sequence.iterator.ConditionedTakingIterator;
 import minimal.sequence.iterator.FilteredIterator;
+import minimal.sequence.iterator.FlatMappedIterator;
 import minimal.sequence.iterator.MappedIterator;
 
 import java.util.ArrayList;
@@ -119,6 +120,21 @@ public final class Sequence<T> implements Iterable<T> {
                 return new MappedIterator<T, R>(items.iterator(), mapper);
             }
         }, size);
+    }
+
+    /**
+     * 各要素に要素からシーケンスへの射影関数を適用して、結果を連結したシーケンスを返します。
+     * @param mapper 要素からシーケンスへの射影関数
+     * @param <R>    射影結果となるシーケンスの要素の型
+     * @return       射影結果の要素を連結したシーケンス
+     */
+    public <R> Sequence<R> flatMap(final Function<? super T, ? extends Iterable<R>> mapper) {
+        return new Sequence<R>(new Iterable<R>() {
+            @Override
+            public Iterator<R> iterator() {
+                return new FlatMappedIterator<T, R>(items.iterator(), mapper);
+            }
+        });
     }
 
     /**

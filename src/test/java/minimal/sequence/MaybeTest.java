@@ -81,6 +81,13 @@ public class MaybeTest {
     }
 
     @Test
+    public void testFlatMap() throws Exception {
+        assertEquals(Maybe.of("1"), Maybe.of(1).flatMap(n -> Maybe.of(String.valueOf(n))));
+        assertEquals(Maybe.nothing, Maybe.<Integer>nothing().flatMap(n -> Maybe.of(String.valueOf(n))));
+        assertEquals(Maybe.nothing, Maybe.of(1).flatMap(x -> Maybe.nothing));
+    }
+
+    @Test
     public void testFilter() throws Exception {
         assertEquals(Maybe.of(1), Maybe.of(1).filter(x -> x > 0));
         assertEquals(Maybe.nothing, Maybe.of(1).filter(x -> x > 1));
