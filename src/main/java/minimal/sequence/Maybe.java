@@ -191,7 +191,7 @@ public final class Maybe<T> implements Iterable<T> {
      * 値が存在する場合は射影関数を適用した結果を Maybe コンテナとして返します。値が存在しない場合は nothing を返します。
      * @param mapper 射影関数
      * @param <R>    射影結果の型
-     * @return       射影結果を持つ可能性のある Maybe コンテナ
+     * @return       射影結果
      */
     public <R> Maybe<R> map(Function<? super T, ? extends R> mapper) {
         return this == nothing ? Maybe.<R>nothing() : of(mapper.apply(object));
@@ -199,12 +199,22 @@ public final class Maybe<T> implements Iterable<T> {
 
     /**
      * 値が存在する場合は射影関数を適用した結果の Maybe コンテナを返します。値が存在しない場合は nothing を返します。
-     * @param mapper 射影関数
+     * @param mapper 値から Maybe コンテナへの射影関数
      * @param <R>    射影結果の Maybe コンテナが持つ値の型
      * @return       射影結果
      */
     public <R> Maybe<R> flatMap(Function<? super T, ? extends Maybe<R>> mapper) {
         return this == nothing ? Maybe.<R>nothing() : mapper.apply(object);
+    }
+
+    /**
+     * 値が存在する場合は射影関数を適用した結果のシーケンスを {@link Sequence} として返します。値が存在しない場合は空のシーケンスを返します。
+     * @param mapper 値からシーケンスへの射影関数
+     * @param <R>    射影結果のシーケンスの要素の型
+     * @return       射影結果
+     */
+    public <R> Sequence<R> sequenceMap(Function<? super T, ? extends Iterable<R>> mapper) {
+        return this == nothing ? Sequence.<R>of() : Sequence.of(mapper.apply(object));
     }
 
     /**
