@@ -47,10 +47,3 @@ Sequence.of("123", "456", "789")        // <= Array or Iterable
         .each(System.out::println)      // 44
         .orElse(() -> 56);              // => Integer(44)
 ```
-
-必要になれば以下のようなメソッドを追加するかもしれません。
-
-* reduce
-* sum
-* min, max
-* その他なんでも
