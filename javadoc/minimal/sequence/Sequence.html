@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":9,"i16":9,"i17":9,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":9,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":9,"i19":9,"i20":9,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -166,144 +166,157 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#equals-java.lang.Iterable-java.lang.Iterable-">equals</a></span>(java.lang.Iterable&nbsp;x,
+      java.lang.Iterable&nbsp;y)</code>
+<div class="block">2 つのシーケンスの要素が順序も含めて一致するかどうか調べます。</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#equals-java.lang.Object-">equals</a></span>(java.lang.Object&nbsp;o)</code>
+<div class="block">他のオブジェクトがこのオブジェクトと等しいかどうか調べます。</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#filter-minimal.sequence.function.Predicate-">filter</a></span>(<a href="../../minimal/sequence/function/Predicate.html" title="minimal.sequence.function内のインタフェース">Predicate</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;&nbsp;predicate)</code>
 <div class="block">条件を満たす要素のみ抽出します。</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#first--">first</a></span>()</code>
 <div class="block">最初の要素を返します。</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>&lt;R&gt;&nbsp;<a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;R&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#flatMap-minimal.sequence.function.Function-">flatMap</a></span>(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>,? extends java.lang.Iterable&lt;R&gt;&gt;&nbsp;mapper)</code>
 <div class="block">各要素に要素からシーケンスへの射影関数を適用して、結果を連結したシーケンスを返します。</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>&lt;K&gt;&nbsp;java.util.LinkedHashMap&lt;K,java.util.List&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;&gt;</code></td>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>&lt;K&gt;&nbsp;java.util.LinkedHashMap&lt;K,<a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#groupBy-minimal.sequence.function.Function-">groupBy</a></span>(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>,? extends K&gt;&nbsp;keySelector)</code>
 <div class="block">同一のキーを持つ要素ごとにグルーピングします。</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#hashCode--">hashCode</a></span>()</code>
+<div class="block">全要素のハッシュコードを元にハッシュコードを算出します。</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#isEmpty--">isEmpty</a></span>()</code>
 <div class="block">シーケンスが空かどうか調べます。</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>java.util.Iterator&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#iterator--">iterator</a></span>()</code>
 <div class="block">イテレーターを生成します。</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#joinToString-java.lang.String-">joinToString</a></span>(java.lang.String&nbsp;delimiter)</code>
 <div class="block">各要素を区切り文字で区切って連結した文字列を生成します。</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>&lt;R&gt;&nbsp;<a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;R&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#map-minimal.sequence.function.Function-">map</a></span>(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>,? extends R&gt;&nbsp;mapper)</code>
 <div class="block">各要素に射影関数を適用します。</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>&lt;C extends java.lang.Comparable&lt;C&gt;&gt;<br><a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#maxBy-minimal.sequence.function.Function-">maxBy</a></span>(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>,? extends C&gt;&nbsp;comparableSelector)</code>
 <div class="block">比較可能な値への射影関数を適用して、結果が最大の要素を返します。</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>&lt;C extends java.lang.Comparable&lt;C&gt;&gt;<br><a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#minBy-minimal.sequence.function.Function-">minBy</a></span>(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>,? extends C&gt;&nbsp;comparableSelector)</code>
 <div class="block">比較可能な値への射影関数を適用して、結果が最小の要素を返します。</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>static &lt;T&gt;&nbsp;<a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#of-java.util.Collection-">of</a></span>(java.util.Collection&lt;T&gt;&nbsp;items)</code>
 <div class="block">シーケンスを作成します。</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>static &lt;T&gt;&nbsp;<a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#of-java.lang.Iterable-">of</a></span>(java.lang.Iterable&lt;T&gt;&nbsp;items)</code>
 <div class="block">シーケンスを作成します。</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>static &lt;T&gt;&nbsp;<a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#of-T...-">of</a></span>(T...&nbsp;items)</code>
 <div class="block">シーケンスを作成します。</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>&lt;U&gt;&nbsp;<a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;U&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#ofClass-java.lang.Class-">ofClass</a></span>(java.lang.Class&lt;U&gt;&nbsp;cls)</code>
 <div class="block">指定された型のインスタンスのみ抽出して、指定された型のシーケンスとして返します。</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#prepend-java.lang.Iterable-">prepend</a></span>(java.lang.Iterable&lt;? extends <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;&nbsp;before)</code>
 <div class="block">先頭へ要素を追加します。</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#prepend-T...-">prepend</a></span>(<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>...&nbsp;before)</code>
 <div class="block">先頭へ要素を追加します。</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#rest--">rest</a></span>()</code>
 <div class="block">最初の要素を除いた残りを返します。</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#single--">single</a></span>()</code>
 <div class="block">単一の要素を持つ場合はその要素を返します。</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#size--">size</a></span>()</code>
 <div class="block">要素数を取得します。</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#skipWhile-minimal.sequence.function.Predicate-">skipWhile</a></span>(<a href="../../minimal/sequence/function/Predicate.html" title="minimal.sequence.function内のインタフェース">Predicate</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;&nbsp;predicate)</code>
 <div class="block">先頭から条件を満たす限り要素を除外します。</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#takeWhile-minimal.sequence.function.Predicate-">takeWhile</a></span>(<a href="../../minimal/sequence/function/Predicate.html" title="minimal.sequence.function内のインタフェース">Predicate</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;&nbsp;predicate)</code>
 <div class="block">先頭から条件を満たす限り要素を抽出します。</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
-<td class="colFirst"><code><a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#toArray--">toArray</a></span>()</code>
-<div class="block">配列を生成します。</div>
-</td>
-</tr>
-<tr id="i27" class="rowColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>java.util.ArrayList&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#toArrayList--">toArrayList</a></span>()</code>
 <div class="block"><code>ArrayList</code> を生成します。</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>&lt;K,V&gt;&nbsp;java.util.HashMap&lt;K,V&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Sequence.html#toHashMap-minimal.sequence.function.Function-minimal.sequence.function.Function-">toHashMap</a></span>(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>,? extends K&gt;&nbsp;keySelector,
          <a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>,? extends V&gt;&nbsp;valueSelector)</code>
@@ -316,7 +329,7 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <!--   -->
 </a>
 <h3>クラスから継承されたメソッド&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, finalize, getClass, notify, notifyAll, toString, wait, wait, wait</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Iterable">
@@ -396,6 +409,24 @@ public static&nbsp;&lt;T&gt;&nbsp;<a href="../../minimal/sequence/Sequence.html"
 </dl>
 </li>
 </ul>
+<a name="equals-java.lang.Iterable-java.lang.Iterable-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>equals</h4>
+<pre>public static&nbsp;boolean&nbsp;equals(java.lang.Iterable&nbsp;x,
+                             java.lang.Iterable&nbsp;y)</pre>
+<div class="block">2 つのシーケンスの要素が順序も含めて一致するかどうか調べます。</div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>x</code> - シーケンス 1</dd>
+<dd><code>y</code> - シーケンス 2</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>2 つのシーケンスの要素が順序も含めて一致する場合は true, 一致しない場合は false</dd>
+</dl>
+</li>
+</ul>
 <a name="iterator--">
 <!--   -->
 </a>
@@ -409,6 +440,40 @@ public static&nbsp;&lt;T&gt;&nbsp;<a href="../../minimal/sequence/Sequence.html"
 <dd><code>iterator</code>&nbsp;インタフェース内&nbsp;<code>java.lang.Iterable&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;</code></dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>イテレーター</dd>
+</dl>
+</li>
+</ul>
+<a name="equals-java.lang.Object-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>equals</h4>
+<pre>public&nbsp;boolean&nbsp;equals(java.lang.Object&nbsp;o)</pre>
+<div class="block">他のオブジェクトがこのオブジェクトと等しいかどうか調べます。</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">オーバーライド:</span></dt>
+<dd><code>equals</code>&nbsp;クラス内&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>o</code> - 他のオブジェクト</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>他のオブジェクトがこのオブジェクトと等しい場合は true, そうでない場合は false</dd>
+</dl>
+</li>
+</ul>
+<a name="hashCode--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre>public&nbsp;int&nbsp;hashCode()</pre>
+<div class="block">全要素のハッシュコードを元にハッシュコードを算出します。</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">オーバーライド:</span></dt>
+<dd><code>hashCode</code>&nbsp;クラス内&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>ハッシュコード</dd>
 </dl>
 </li>
 </ul>
@@ -768,20 +833,6 @@ public final&nbsp;<a href="../../minimal/sequence/Sequence.html" title="minimal.
 </dl>
 </li>
 </ul>
-<a name="toArray--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>toArray</h4>
-<pre>public&nbsp;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>[]&nbsp;toArray()</pre>
-<div class="block">配列を生成します。</div>
-<dl>
-<dt><span class="returnLabel">戻り値:</span></dt>
-<dd>配列</dd>
-</dl>
-</li>
-</ul>
 <a name="toHashMap-minimal.sequence.function.Function-minimal.sequence.function.Function-">
 <!--   -->
 </a>
@@ -809,7 +860,7 @@ public final&nbsp;<a href="../../minimal/sequence/Sequence.html" title="minimal.
 <ul class="blockListLast">
 <li class="blockList">
 <h4>groupBy</h4>
-<pre>public&nbsp;&lt;K&gt;&nbsp;java.util.LinkedHashMap&lt;K,java.util.List&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;&gt;&nbsp;groupBy(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>,? extends K&gt;&nbsp;keySelector)</pre>
+<pre>public&nbsp;&lt;K&gt;&nbsp;java.util.LinkedHashMap&lt;K,<a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;<a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>&gt;&gt;&nbsp;groupBy(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Sequence.html" title="Sequence内の型パラメータ">T</a>,? extends K&gt;&nbsp;keySelector)</pre>
 <div class="block">同一のキーを持つ要素ごとにグルーピングします。</div>
 <dl>
 <dt><span class="paramLabel">型パラメータ:</span></dt>
