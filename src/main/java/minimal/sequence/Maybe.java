@@ -102,6 +102,7 @@ public final class Maybe<T> implements Iterable<T> {
      * イテレーターを生成します。
      * @return イテレーター
      */
+    @Override
     public Iterator<T> iterator() {
         return this == nothing ? Collections.<T>emptyIterator() : Collections.singletonList(object).iterator();
     }

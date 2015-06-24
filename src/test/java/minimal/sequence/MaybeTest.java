@@ -89,9 +89,9 @@ public class MaybeTest {
 
     @Test
     public void testSequenceMap() throws Exception {
-        assertArrayEquals(new String[]{"1", "2"}, Maybe.of(1).sequenceMap(n -> Sequence.of(String.valueOf(n), String.valueOf(n + 1))).toArray());
-        assertArrayEquals(new String[]{}, Maybe.<Integer>nothing().sequenceMap(n -> Sequence.of(String.valueOf(n), String.valueOf(n + 1))).toArray());
-        assertArrayEquals(new String[]{}, Maybe.of(1).sequenceMap(n -> Sequence.<String>of()).toArray());
+        assertEquals(Sequence.<String>of("1", "2"), Maybe.of(1).sequenceMap(n -> Sequence.of(String.valueOf(n), String.valueOf(n + 1))));
+        assertEquals(Sequence.<String>of(), Maybe.<Integer>nothing().sequenceMap(n -> Sequence.of(String.valueOf(n), String.valueOf(n + 1))));
+        assertEquals(Sequence.<String>of(), Maybe.of(1).sequenceMap(n -> Sequence.<String>of()));
     }
 
     @Test

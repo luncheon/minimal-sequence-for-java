@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * シーケンスをラップして操作するためのユーティリティを表します。
@@ -66,11 +67,54 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
+     * 2 つのシーケンスの要素が順序も含めて一致するかどうか調べます。
+     * @param x シーケンス 1
+     * @param y シーケンス 2
+     * @return  2 つのシーケンスの要素が順序も含めて一致する場合は true, 一致しない場合は false
+     */
+    public static boolean equals(Iterable x, Iterable y) {
+        if (x == y) {
+            return true;
+        }
+        Iterator xi = x.iterator(), yi = y.iterator();
+        while (xi.hasNext() && yi.hasNext()) {
+            if (!Objects.equals(xi.next(), yi.next())) {
+                return false;
+            }
+        }
+        return !xi.hasNext() && !yi.hasNext();
+    }
+
+    /**
      * イテレーターを生成します。
      * @return イテレーター
      */
+    @Override
     public Iterator<T> iterator() {
         return items.iterator();
+    }
+
+    /**
+     * 他のオブジェクトがこのオブジェクトと等しいかどうか調べます。
+     * @param o 他のオブジェクト
+     * @return 他のオブジェクトがこのオブジェクトと等しい場合は true, そうでない場合は false
+     */
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Sequence && equals(this, (Sequence) o);
+    }
+
+    /**
+     * 全要素のハッシュコードを元にハッシュコードを算出します。
+     * @return ハッシュコード
+     */
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        for (T item : items) {
+            hash = hash * 31 + Objects.hashCode(item);
+        }
+        return hash;
     }
 
     /**
@@ -355,15 +399,6 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * 配列を生成します。
-     * @return 配列
-     */
-    @SuppressWarnings("unchecked")
-    public T[] toArray() {
-        return (T[]) toArrayList().toArray();
-    }
-
-    /**
      * {@link HashMap} を生成します。
      * @param keySelector   要素からキーを生成する射影関数
      * @param valueSelector 要素から値を生成する射影関数
@@ -385,14 +420,16 @@ public final class Sequence<T> implements Iterable<T> {
      * @param <K>         グルーピングのキーの型
      * @return            キーとグループの連想配列
      */
-    public <K> LinkedHashMap<K, List<T>> groupBy(Function<? super T, ? extends K> keySelector) {
-        LinkedHashMap<K, List<T>> result = new LinkedHashMap<K, List<T>>();
+    public <K> LinkedHashMap<K, Sequence<T>> groupBy(Function<? super T, ? extends K> keySelector) {
+        LinkedHashMap<K, Sequence<T>> result = new LinkedHashMap<K, Sequence<T>>();
+        HashMap<K, List<T>> lists = new HashMap<K, List<T>>();
         for (T item : items) {
             K key = keySelector.apply(item);
-            List<T> list = result.get(key);
+            List<T> list = lists.get(key);
             if (list == null) {
                 list = new ArrayList<T>();
-                result.put(key, list);
+                lists.put(key, list);
+                result.put(key, Sequence.of(list));
             }
             list.add(item);
         }

@@ -37,53 +37,53 @@ public class SequenceTest {
 
     @Test
     public void testMap() throws Exception {
-        assertArrayEquals(new Integer[]{1, 4, 9}, Sequence.of(1, 2, 3).map(x -> x * x).toArray());
-        assertArrayEquals(new Integer[]{}, Sequence.<Integer>of().map(x -> x * x).toArray());
+        assertEquals(Sequence.of(1, 4, 9), Sequence.of(1, 2, 3).map(x -> x * x));
+        assertEquals(Sequence.of(), Sequence.<Integer>of().map(x -> x * x));
     }
 
     @Test
     public void testFlatMap() throws Exception {
-        assertArrayEquals(new String[]{"2", "3", "4", "6", "6", "9"}, Sequence.of(1, 2, 3).flatMap(x -> Arrays.asList(String.valueOf(x * 2), String.valueOf(x * 3))).toArray());
-        assertArrayEquals(new String[]{}, Sequence.<Integer>of().flatMap(x -> Arrays.asList(String.valueOf(x * 2), String.valueOf(x * 3))).toArray());
-        assertArrayEquals(new String[]{}, Sequence.<Integer>of(1, 2, 3).flatMap(x -> Collections.emptyList()).toArray());
+        assertEquals(Sequence.of("2", "3", "4", "6", "6", "9"), Sequence.of(1, 2, 3).flatMap(x -> Arrays.asList(String.valueOf(x * 2), String.valueOf(x * 3))));
+        assertEquals(Sequence.of(), Sequence.<Integer>of().flatMap(x -> Arrays.asList(String.valueOf(x * 2), String.valueOf(x * 3))));
+        assertEquals(Sequence.of(), Sequence.<Integer>of(1, 2, 3).flatMap(x -> Collections.emptyList()));
     }
 
     @Test
     public void testFilter() throws Exception {
-        assertArrayEquals(new Integer[]{2, 4, 2}, Sequence.of(1, 2, 3, 4, 3, 2, 1).filter(x -> x % 2 == 0).toArray());
-        assertArrayEquals(new Integer[]{}, Sequence.<Integer>of().filter(x -> true).toArray());
+        assertEquals(Sequence.of(2, 4, 2), Sequence.of(1, 2, 3, 4, 3, 2, 1).filter(x -> x % 2 == 0));
+        assertEquals(Sequence.of(), Sequence.<Integer>of().filter(x -> true));
     }
 
     @Test
     public void testOfClass() throws Exception {
-        assertArrayEquals(new Integer[]{1, 2}, Sequence.of(1, 1.5, "1.75", 2).ofClass(Integer.class).toArray());
-        assertArrayEquals(new Number[]{1, 1.5, 2}, Sequence.of(1, 1.5, "1.75", 2).ofClass(Number.class).toArray());
+        assertEquals(Sequence.of(1, 2), Sequence.of(1, 1.5, "1.75", 2).ofClass(Integer.class));
+        assertEquals(Sequence.<Number>of(1, 1.5, 2), Sequence.of(1, 1.5, "1.75", 2).ofClass(Number.class));
     }
 
     @Test
     public void testTakeWhile() throws Exception {
-        assertArrayEquals(new Integer[]{1, 2}, Sequence.of(1, 2, 3, 2, 1).takeWhile(x -> x < 3).toArray());
-        assertArrayEquals(new Integer[]{}, Sequence.of(1, 2, 3, 2, 1).takeWhile(x -> x > 1).toArray());
-        assertArrayEquals(new Integer[]{}, Sequence.<Integer>of().takeWhile(x -> true).toArray());
+        assertEquals(Sequence.<Integer>of(1, 2), Sequence.of(1, 2, 3, 2, 1).takeWhile(x -> x < 3));
+        assertEquals(Sequence.<Integer>of(), Sequence.of(1, 2, 3, 2, 1).takeWhile(x -> x > 1));
+        assertEquals(Sequence.<Integer>of(), Sequence.<Integer>of().takeWhile(x -> true));
     }
 
     @Test
     public void testSkipWhile() throws Exception {
-        assertArrayEquals(new Integer[]{3, 2, 1}, Sequence.of(1, 2, 3, 2, 1).skipWhile(x -> x < 3).toArray());
-        assertArrayEquals(new Integer[]{1, 2, 3, 2, 1}, Sequence.of(1, 2, 3, 2, 1).skipWhile(x -> x > 1).toArray());
-        assertArrayEquals(new Integer[]{}, Sequence.<Integer>of().skipWhile(x -> true).toArray());
+        assertEquals(Sequence.<Integer>of(3, 2, 1), Sequence.of(1, 2, 3, 2, 1).skipWhile(x -> x < 3));
+        assertEquals(Sequence.<Integer>of(1, 2, 3, 2, 1), Sequence.of(1, 2, 3, 2, 1).skipWhile(x -> x > 1));
+        assertEquals(Sequence.<Integer>of(), Sequence.<Integer>of().skipWhile(x -> true));
     }
 
     @Test
     public void testAppend() throws Exception {
-        assertArrayEquals(new String[]{"ab", "cd", "ef", "gh"}, Sequence.of("ab", "cd").append("ef", "gh").toArray());
-        assertArrayEquals(new String[]{"ef", "gh"}, Sequence.of().append("ef", "gh").toArray());
+        assertEquals(Sequence.<String>of("ab", "cd", "ef", "gh"), Sequence.of("ab", "cd").append("ef", "gh"));
+        assertEquals(Sequence.<String>of("ef", "gh"), Sequence.of().append("ef", "gh"));
     }
 
     @Test
     public void testPrepend() throws Exception {
-        assertArrayEquals(new String[]{"ab", "cd", "ef", "gh"}, Sequence.of("ef", "gh").prepend("ab", "cd").toArray());
-        assertArrayEquals(new String[]{"ef", "gh"}, Sequence.of().prepend("ef", "gh").toArray());
+        assertEquals(Sequence.<String>of("ab", "cd", "ef", "gh"), Sequence.of("ef", "gh").prepend("ab", "cd"));
+        assertEquals(Sequence.<String>of("ef", "gh"), Sequence.of().prepend("ef", "gh"));
     }
 
     @Test
@@ -94,9 +94,9 @@ public class SequenceTest {
 
     @Test
     public void testRest() throws Exception {
-        assertArrayEquals(new Integer[]{2, 3}, Sequence.of(1, 2, 3).rest().toArray());
-        assertArrayEquals(new Integer[]{}, Sequence.of(1).rest().toArray());
-        assertArrayEquals(new Integer[]{}, Sequence.of().rest().toArray());
+        assertEquals(Sequence.<Integer>of(2, 3), Sequence.of(1, 2, 3).rest());
+        assertEquals(Sequence.<Integer>of(), Sequence.of(1).rest());
+        assertEquals(Sequence.<Integer>of(), Sequence.of().rest());
     }
 
     @Test
@@ -152,10 +152,10 @@ public class SequenceTest {
 
     @Test
     public void testGroupBy() throws Exception {
-        LinkedHashMap<Integer, List<Integer>> groups = Sequence.of(0, 1, 2, 3, 4, 5, 6, 7).groupBy(x -> x % 3);
+        LinkedHashMap<Integer, Sequence<Integer>> groups = Sequence.of(0, 1, 2, 3, 4, 5, 6, 7).groupBy(x -> x % 3);
         assertEquals(3, groups.size());
-        assertArrayEquals(new Integer[]{0, 3, 6}, groups.get(0).toArray());
-        assertArrayEquals(new Integer[]{1, 4, 7}, groups.get(1).toArray());
-        assertArrayEquals(new Integer[]{2, 5}, groups.get(2).toArray());
+        assertEquals(Sequence.<Integer>of(0, 3, 6), groups.get(0));
+        assertEquals(Sequence.<Integer>of(1, 4, 7), groups.get(1));
+        assertEquals(Sequence.<Integer>of(2, 5), groups.get(2));
     }
 }
