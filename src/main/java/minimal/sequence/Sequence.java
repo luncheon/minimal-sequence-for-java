@@ -135,6 +135,26 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
+     * 指定された型のインスタンスのみ抽出して、指定された型のシーケンスとして返します。
+     * @param cls 型
+     * @param <U> 型
+     * @return    指定された型の要素を持つシーケンス
+     */
+    public <U> Sequence<U> ofClass(final Class<U> cls) {
+        return filter(new Predicate<T>() {
+            @Override
+            public boolean test(T t) {
+                return cls.isInstance(t);
+            }
+        }).map(new Function<T, U>() {
+            @Override
+            public U apply(T t) {
+                return cls.cast(t);
+            }
+        });
+    }
+
+    /**
      * 先頭から条件を満たす限り要素を抽出します。条件を満たさない最初の要素以降の要素を除外します。
      * @param predicate 条件
      * @return          先頭から条件を満たしている間の要素のシーケンス

@@ -88,6 +88,14 @@ public class MaybeTest {
     }
 
     @Test
+    public void testOfClass() throws Exception {
+        assertEquals(Maybe.of(1), Maybe.of(1).ofClass(Integer.class));
+        assertEquals(Maybe.of(1), Maybe.of(1).ofClass(Number.class));
+        assertEquals(Maybe.nothing, Maybe.of(1).ofClass(Double.class));
+        assertEquals(Maybe.nothing, Maybe.nothing.ofClass(Object.class));
+    }
+
+    @Test
     public void testToString() throws Exception {
         assertEquals("Maybe{Nothing}", Maybe.nothing.toString());
         assertEquals("Maybe{Just 1}", Maybe.of(1).toString());

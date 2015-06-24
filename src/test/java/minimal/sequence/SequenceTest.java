@@ -47,6 +47,12 @@ public class SequenceTest {
     }
 
     @Test
+    public void testOfClass() throws Exception {
+        assertArrayEquals(new Integer[]{1, 2}, Sequence.of(1, 1.5, "1.75", 2).ofClass(Integer.class).toArray());
+        assertArrayEquals(new Number[]{1, 1.5, 2}, Sequence.of(1, 1.5, "1.75", 2).ofClass(Number.class).toArray());
+    }
+
+    @Test
     public void testTakeWhile() throws Exception {
         assertArrayEquals(new Integer[]{1, 2}, Sequence.of(1, 2, 3, 2, 1).takeWhile(x -> x < 3).toArray());
         assertArrayEquals(new Integer[]{}, Sequence.of(1, 2, 3, 2, 1).takeWhile(x -> x > 1).toArray());

@@ -200,10 +200,20 @@ public final class Maybe<T> implements Iterable<T> {
     /**
      * 値が存在して指定の条件を満たす場合はこのインスタンスをそのまま返します。それ以外の場合は nothing を返します。
      * @param predicate 条件
-     * @return          条件を満たす場合は
+     * @return          条件を満たす場合はこのインスタンス、そうでない場合は nothing
      */
     public Maybe<T> filter(Predicate<? super T> predicate) {
         return this != nothing && predicate.test(object) ? this : Maybe.<T>nothing();
+    }
+
+    /**
+     * 値が指定された型のインスタンスの場合は値を指定された型にキャストした値を持つ Maybe コンテナを返します。値が指定された型のインスタンスでない場合は nothing を返します。
+     * @param cls 型
+     * @param <U> 型
+     * @return    指定された型にキャストした値を持つ Maybe コンテナ
+     */
+    public <U> Maybe<U> ofClass(Class<U> cls) {
+        return this != nothing && cls.isInstance(object) ? Maybe.of(cls.cast(object)) : Maybe.<U>nothing();
     }
 
     /**
