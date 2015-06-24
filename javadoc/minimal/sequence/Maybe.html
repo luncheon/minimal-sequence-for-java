@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":9,"i13":9,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":9,"i13":9,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -283,6 +283,12 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 </td>
 </tr>
 <tr id="i21" class="rowColor">
+<td class="colFirst"><code>&lt;R&gt;&nbsp;<a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;R&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#sequenceMap-minimal.sequence.function.Function-">sequenceMap</a></span>(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>,? extends java.lang.Iterable&lt;R&gt;&gt;&nbsp;mapper)</code>
+<div class="block">値が存在する場合は射影関数を適用した結果のシーケンスを <a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス"><code>Sequence</code></a> として返します。</div>
+</td>
+</tr>
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#toString--">toString</a></span>()</code>
 <div class="block">文字列に変換します。</div>
@@ -611,7 +617,7 @@ public static&nbsp;&lt;T&gt;&nbsp;<a href="../../minimal/sequence/Maybe.html" ti
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>mapper</code> - 射影関数</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>射影結果を持つ可能性のある Maybe コンテナ</dd>
+<dd>射影結果</dd>
 </dl>
 </li>
 </ul>
@@ -627,7 +633,25 @@ public static&nbsp;&lt;T&gt;&nbsp;<a href="../../minimal/sequence/Maybe.html" ti
 <dt><span class="paramLabel">型パラメータ:</span></dt>
 <dd><code>R</code> - 射影結果の Maybe コンテナが持つ値の型</dd>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>mapper</code> - 射影関数</dd>
+<dd><code>mapper</code> - 値から Maybe コンテナへの射影関数</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>射影結果</dd>
+</dl>
+</li>
+</ul>
+<a name="sequenceMap-minimal.sequence.function.Function-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sequenceMap</h4>
+<pre>public&nbsp;&lt;R&gt;&nbsp;<a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;R&gt;&nbsp;sequenceMap(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>,? extends java.lang.Iterable&lt;R&gt;&gt;&nbsp;mapper)</pre>
+<div class="block">値が存在する場合は射影関数を適用した結果のシーケンスを <a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス"><code>Sequence</code></a> として返します。値が存在しない場合は空のシーケンスを返します。</div>
+<dl>
+<dt><span class="paramLabel">型パラメータ:</span></dt>
+<dd><code>R</code> - 射影結果のシーケンスの要素の型</dd>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>mapper</code> - 値からシーケンスへの射影関数</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>射影結果</dd>
 </dl>
