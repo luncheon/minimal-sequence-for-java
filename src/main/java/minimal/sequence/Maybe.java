@@ -46,59 +46,6 @@ public final class Maybe<T> implements Iterable<T> {
     }
 
     /**
-     * シーケンスから最初の非 null 要素を持つ Maybe コンテナを取得します。
-     * @param objects シーケンス
-     * @param <T>     Maybe コンテナが保持するオブジェクトの型
-     * @return        Maybe コンテナ
-     */
-    public static <T> Maybe<T> anyOf(Iterable<? extends T> objects) {
-        for (T object : objects) {
-            if (object != null) {
-                return new Maybe<T>(object);
-            }
-        }
-        return nothing();
-    }
-
-    /**
-     * 配列から最初の非 null 要素を持つ Maybe コンテナを取得します。
-     * @param objects シーケンス
-     * @param <T>     Maybe コンテナが保持するオブジェクトの型
-     * @return        Maybe コンテナ
-     */
-    @SafeVarargs
-    public static <T> Maybe<T> anyOf(T... objects) {
-        return Maybe.anyOf(Arrays.asList(objects));
-    }
-
-    /**
-     * サプライヤーのシーケンスから最初の非 null 生成値を持つ Maybe コンテナを取得します。
-     * @param suppliers サプライヤーのシーケンス
-     * @param <T>       Maybe コンテナが保持するオブジェクトの型
-     * @return          Maybe コンテナ
-     */
-    public static <T> Maybe<T> anyOfGet(Iterable<Supplier<? extends T>> suppliers) {
-        for (Supplier<? extends T> supplier : suppliers) {
-            T object = supplier.get();
-            if (object != null) {
-                return new Maybe<T>(object);
-            }
-        }
-        return nothing();
-    }
-
-    /**
-     * サプライヤーの配列から最初の非 null 生成値を持つ Maybe コンテナを取得します。
-     * @param suppliers サプライヤーの配列
-     * @param <T>       Maybe コンテナが保持するオブジェクトの型
-     * @return          Maybe コンテナ
-     */
-    @SafeVarargs
-    public static <T> Maybe<T> anyOfGet(Supplier<? extends T>... suppliers) {
-        return anyOfGet(Arrays.asList(suppliers));
-    }
-
-    /**
      * イテレーターを生成します。
      * @return イテレーター
      */

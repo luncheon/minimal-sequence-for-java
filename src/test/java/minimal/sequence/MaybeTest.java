@@ -9,22 +9,6 @@ import static org.junit.Assert.*;
  */
 public class MaybeTest {
     @Test
-    public void testAnyOf() throws Exception {
-        assertEquals(Maybe.of(1), Maybe.anyOf(1, 2, 3));
-        assertEquals(Maybe.of(1), Maybe.anyOf(null, null, 1, 2));
-        assertEquals(Maybe.nothing, Maybe.anyOf());
-        assertEquals(Maybe.nothing, Maybe.anyOf(null, null));
-    }
-
-    @Test
-    public void testAnyOfGet() throws Exception {
-        assertEquals(Maybe.of(1), Maybe.anyOfGet(() -> 1, () -> 2, () -> 3));
-        assertEquals(Maybe.of(1), Maybe.anyOfGet(() -> null, () -> null, () -> 1, () -> 2));
-        assertEquals(Maybe.nothing, Maybe.anyOfGet());
-        assertEquals(Maybe.nothing, Maybe.anyOfGet(() -> null, () -> null));
-    }
-
-    @Test
     public void testOrElse() throws Exception {
         assertEquals(Integer.valueOf(1), Maybe.of(1).orElse(2));
         assertEquals(Integer.valueOf(2), Maybe.<Integer>nothing().orElse(2));
