@@ -1,4 +1,4 @@
-package minimal.sequence.iterator;
+package minimal.sequence;
 
 import minimal.sequence.function.Function;
 
@@ -7,7 +7,7 @@ import java.util.Iterator;
 /**
  * 各要素を射影関数で変換するイテレーターを表します。
  */
-public final class MappedIterator<T, R> implements Iterator<R> {
+final class MappedIterator<T, R> implements Iterator<R> {
     private final Iterator<T> source;
     private final Function<? super T, ? extends R> mapper;
 

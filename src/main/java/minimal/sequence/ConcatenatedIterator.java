@@ -1,11 +1,11 @@
-package minimal.sequence.iterator;
+package minimal.sequence;
 
 import java.util.Iterator;
 
 /**
  * 2 つのイテレーターを連結するイテレーターを表します。
  */
-public final class ConcatenatedIterator<T> implements Iterator<T> {
+final class ConcatenatedIterator<T> implements Iterator<T> {
     private final Iterator<? extends T> source1;
     private final Iterator<? extends T> source2;
 

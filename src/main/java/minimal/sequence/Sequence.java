@@ -3,12 +3,6 @@ package minimal.sequence;
 import minimal.sequence.function.Consumer;
 import minimal.sequence.function.Function;
 import minimal.sequence.function.Predicate;
-import minimal.sequence.iterator.ConcatenatedIterator;
-import minimal.sequence.iterator.ConditionedSkippingIterator;
-import minimal.sequence.iterator.ConditionedTakingIterator;
-import minimal.sequence.iterator.FilteredIterator;
-import minimal.sequence.iterator.FlatMappedIterator;
-import minimal.sequence.iterator.MappedIterator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
