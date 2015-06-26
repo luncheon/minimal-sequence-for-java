@@ -84,22 +84,6 @@
 <dd>
 <div class="block">条件を満たす要素が含まれているかどうかを調べます。</div>
 </dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/Maybe.html#anyOf-java.lang.Iterable-">anyOf(Iterable&lt;? extends T&gt;)</a></span> - クラス のstaticメソッドminimal.sequence.<a href="minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a></dt>
-<dd>
-<div class="block">シーケンスから最初の非 null 要素を持つ Maybe コンテナを取得します。</div>
-</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/Maybe.html#anyOf-T...-">anyOf(T...)</a></span> - クラス のstaticメソッドminimal.sequence.<a href="minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a></dt>
-<dd>
-<div class="block">配列から最初の非 null 要素を持つ Maybe コンテナを取得します。</div>
-</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/Maybe.html#anyOfGet-java.lang.Iterable-">anyOfGet(Iterable&lt;Supplier&lt;? extends T&gt;&gt;)</a></span> - クラス のstaticメソッドminimal.sequence.<a href="minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a></dt>
-<dd>
-<div class="block">サプライヤーのシーケンスから最初の非 null 生成値を持つ Maybe コンテナを取得します。</div>
-</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/Maybe.html#anyOfGet-minimal.sequence.function.Supplier...-">anyOfGet(Supplier&lt;? extends T&gt;...)</a></span> - クラス のstaticメソッドminimal.sequence.<a href="minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a></dt>
-<dd>
-<div class="block">サプライヤーの配列から最初の非 null 生成値を持つ Maybe コンテナを取得します。</div>
-</dd>
 <dt><span class="memberNameLink"><a href="minimal/sequence/Sequence.html#append-java.lang.Iterable-">append(Iterable&lt;? extends T&gt;)</a></span> - クラス のメソッドminimal.sequence.<a href="minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a></dt>
 <dd>
 <div class="block">末尾へ要素を追加します。</div>
@@ -116,24 +100,6 @@
 </a>
 <h2 class="title">C</h2>
 <dl>
-<dt><a href="minimal/sequence/iterator/ConcatenatedIterator.html" title="minimal.sequence.iterator内のクラス"><span class="typeNameLink">ConcatenatedIterator</span></a>&lt;<a href="minimal/sequence/iterator/ConcatenatedIterator.html" title="ConcatenatedIterator内の型パラメータ">T</a>&gt; - <a href="minimal/sequence/iterator/package-summary.html">minimal.sequence.iterator</a>のクラス</dt>
-<dd>
-<div class="block">2 つのイテレーターを連結するイテレーターを表します。</div>
-</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConcatenatedIterator.html#ConcatenatedIterator-java.util.Iterator-java.util.Iterator-">ConcatenatedIterator(Iterator&lt;? extends T&gt;, Iterator&lt;? extends T&gt;)</a></span> - クラス のコンストラクタminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConcatenatedIterator.html" title="minimal.sequence.iterator内のクラス">ConcatenatedIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="minimal/sequence/iterator/ConditionedSkippingIterator.html" title="minimal.sequence.iterator内のクラス"><span class="typeNameLink">ConditionedSkippingIterator</span></a>&lt;<a href="minimal/sequence/iterator/ConditionedSkippingIterator.html" title="ConditionedSkippingIterator内の型パラメータ">T</a>&gt; - <a href="minimal/sequence/iterator/package-summary.html">minimal.sequence.iterator</a>のクラス</dt>
-<dd>
-<div class="block">先頭から条件を満たす間の要素を除外して、残りの要素を抽出するイテレーターを表します。</div>
-</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConditionedSkippingIterator.html#ConditionedSkippingIterator-java.util.Iterator-minimal.sequence.function.Predicate-">ConditionedSkippingIterator(Iterator&lt;T&gt;, Predicate&lt;? super T&gt;)</a></span> - クラス のコンストラクタminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConditionedSkippingIterator.html" title="minimal.sequence.iterator内のクラス">ConditionedSkippingIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="minimal/sequence/iterator/ConditionedTakingIterator.html" title="minimal.sequence.iterator内のクラス"><span class="typeNameLink">ConditionedTakingIterator</span></a>&lt;<a href="minimal/sequence/iterator/ConditionedTakingIterator.html" title="ConditionedTakingIterator内の型パラメータ">T</a>&gt; - <a href="minimal/sequence/iterator/package-summary.html">minimal.sequence.iterator</a>のクラス</dt>
-<dd>
-<div class="block">先頭から条件を満たす間のみ要素を抽出するイテレーターを表します。</div>
-</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConditionedTakingIterator.html#ConditionedTakingIterator-java.util.Iterator-minimal.sequence.function.Predicate-">ConditionedTakingIterator(Iterator&lt;T&gt;, Predicate&lt;? super T&gt;)</a></span> - クラス のコンストラクタminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConditionedTakingIterator.html" title="minimal.sequence.iterator内のクラス">ConditionedTakingIterator</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="minimal/sequence/function/Consumer.html" title="minimal.sequence.function内のインタフェース"><span class="typeNameLink">Consumer</span></a>&lt;<a href="minimal/sequence/function/Consumer.html" title="Consumer内の型パラメータ">T</a>&gt; - <a href="minimal/sequence/function/package-summary.html">minimal.sequence.function</a>のインタフェース</dt>
 <dd>
 <div class="block">1 つの引数を受け取って結果を返さない操作を表します。</div>
@@ -182,12 +148,6 @@
 <dd>
 <div class="block">条件を満たす要素のみ抽出します。</div>
 </dd>
-<dt><a href="minimal/sequence/iterator/FilteredIterator.html" title="minimal.sequence.iterator内のクラス"><span class="typeNameLink">FilteredIterator</span></a>&lt;<a href="minimal/sequence/iterator/FilteredIterator.html" title="FilteredIterator内の型パラメータ">T</a>&gt; - <a href="minimal/sequence/iterator/package-summary.html">minimal.sequence.iterator</a>のクラス</dt>
-<dd>
-<div class="block">条件を満たす要素のみ通すイテレーターを表します。</div>
-</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/FilteredIterator.html#FilteredIterator-java.util.Iterator-minimal.sequence.function.Predicate-">FilteredIterator(Iterator&lt;T&gt;, Predicate&lt;? super T&gt;)</a></span> - クラス のコンストラクタminimal.sequence.iterator.<a href="minimal/sequence/iterator/FilteredIterator.html" title="minimal.sequence.iterator内のクラス">FilteredIterator</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="minimal/sequence/Sequence.html#first--">first()</a></span> - クラス のメソッドminimal.sequence.<a href="minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a></dt>
 <dd>
 <div class="block">最初の要素を返します。</div>
@@ -200,12 +160,6 @@
 <dd>
 <div class="block">各要素に要素からシーケンスへの射影関数を適用して、結果を連結したシーケンスを返します。</div>
 </dd>
-<dt><a href="minimal/sequence/iterator/FlatMappedIterator.html" title="minimal.sequence.iterator内のクラス"><span class="typeNameLink">FlatMappedIterator</span></a>&lt;<a href="minimal/sequence/iterator/FlatMappedIterator.html" title="FlatMappedIterator内の型パラメータ">T</a>,<a href="minimal/sequence/iterator/FlatMappedIterator.html" title="FlatMappedIterator内の型パラメータ">R</a>&gt; - <a href="minimal/sequence/iterator/package-summary.html">minimal.sequence.iterator</a>のクラス</dt>
-<dd>
-<div class="block">各要素を射影関数でシーケンスに変換して連結するイテレーターを表します。</div>
-</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/FlatMappedIterator.html#FlatMappedIterator-java.util.Iterator-minimal.sequence.function.Function-">FlatMappedIterator(Iterator&lt;? extends T&gt;, Function&lt;? super T, ? extends Iterable&lt;R&gt;&gt;)</a></span> - クラス のコンストラクタminimal.sequence.iterator.<a href="minimal/sequence/iterator/FlatMappedIterator.html" title="minimal.sequence.iterator内のクラス">FlatMappedIterator</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース"><span class="typeNameLink">Function</span></a>&lt;<a href="minimal/sequence/function/Function.html" title="Function内の型パラメータ">T</a>,<a href="minimal/sequence/function/Function.html" title="Function内の型パラメータ">R</a>&gt; - <a href="minimal/sequence/function/package-summary.html">minimal.sequence.function</a>のインタフェース</dt>
 <dd>
 <div class="block">1 つの引数を受け取って結果を生成する関数を表します。</div>
@@ -236,18 +190,6 @@
 <dd>
 <div class="block">全要素のハッシュコードを元にハッシュコードを算出します。</div>
 </dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConcatenatedIterator.html#hasNext--">hasNext()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConcatenatedIterator.html" title="minimal.sequence.iterator内のクラス">ConcatenatedIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConditionedSkippingIterator.html#hasNext--">hasNext()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConditionedSkippingIterator.html" title="minimal.sequence.iterator内のクラス">ConditionedSkippingIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConditionedTakingIterator.html#hasNext--">hasNext()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConditionedTakingIterator.html" title="minimal.sequence.iterator内のクラス">ConditionedTakingIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/FilteredIterator.html#hasNext--">hasNext()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/FilteredIterator.html" title="minimal.sequence.iterator内のクラス">FilteredIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/FlatMappedIterator.html#hasNext--">hasNext()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/FlatMappedIterator.html" title="minimal.sequence.iterator内のクラス">FlatMappedIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/MappedIterator.html#hasNext--">hasNext()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/MappedIterator.html" title="minimal.sequence.iterator内のクラス">MappedIterator</a></dt>
-<dd>&nbsp;</dd>
 </dl>
 <a name="I:I">
 <!--   -->
@@ -290,12 +232,6 @@
 <dd>
 <div class="block">各要素に射影関数を適用します。</div>
 </dd>
-<dt><a href="minimal/sequence/iterator/MappedIterator.html" title="minimal.sequence.iterator内のクラス"><span class="typeNameLink">MappedIterator</span></a>&lt;<a href="minimal/sequence/iterator/MappedIterator.html" title="MappedIterator内の型パラメータ">T</a>,<a href="minimal/sequence/iterator/MappedIterator.html" title="MappedIterator内の型パラメータ">R</a>&gt; - <a href="minimal/sequence/iterator/package-summary.html">minimal.sequence.iterator</a>のクラス</dt>
-<dd>
-<div class="block">各要素を射影関数で変換するイテレーターを表します。</div>
-</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/MappedIterator.html#MappedIterator-java.util.Iterator-minimal.sequence.function.Function-">MappedIterator(Iterator&lt;T&gt;, Function&lt;? super T, ? extends R&gt;)</a></span> - クラス のコンストラクタminimal.sequence.iterator.<a href="minimal/sequence/iterator/MappedIterator.html" title="minimal.sequence.iterator内のクラス">MappedIterator</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="minimal/sequence/Sequence.html#maxBy-minimal.sequence.function.Function-">maxBy(Function&lt;? super T, ? extends C&gt;)</a></span> - クラス のメソッドminimal.sequence.<a href="minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a></dt>
 <dd>
 <div class="block">比較可能な値への射影関数を適用して、結果が最大の要素を返します。</div>
@@ -312,26 +248,12 @@
 <dd>&nbsp;</dd>
 <dt><a href="minimal/sequence/function/package-summary.html">minimal.sequence.function</a> - パッケージ minimal.sequence.function</dt>
 <dd>&nbsp;</dd>
-<dt><a href="minimal/sequence/iterator/package-summary.html">minimal.sequence.iterator</a> - パッケージ minimal.sequence.iterator</dt>
-<dd>&nbsp;</dd>
 </dl>
 <a name="I:N">
 <!--   -->
 </a>
 <h2 class="title">N</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConcatenatedIterator.html#next--">next()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConcatenatedIterator.html" title="minimal.sequence.iterator内のクラス">ConcatenatedIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConditionedSkippingIterator.html#next--">next()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConditionedSkippingIterator.html" title="minimal.sequence.iterator内のクラス">ConditionedSkippingIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConditionedTakingIterator.html#next--">next()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConditionedTakingIterator.html" title="minimal.sequence.iterator内のクラス">ConditionedTakingIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/FilteredIterator.html#next--">next()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/FilteredIterator.html" title="minimal.sequence.iterator内のクラス">FilteredIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/FlatMappedIterator.html#next--">next()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/FlatMappedIterator.html" title="minimal.sequence.iterator内のクラス">FlatMappedIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/MappedIterator.html#next--">next()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/MappedIterator.html" title="minimal.sequence.iterator内のクラス">MappedIterator</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="minimal/sequence/Maybe.html#nothing">nothing</a></span> - クラス のstatic変数minimal.sequence.<a href="minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a></dt>
 <dd>
 <div class="block">値が存在しない唯一の Maybe コンテナを表します。</div>
@@ -418,18 +340,6 @@
 </a>
 <h2 class="title">R</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConcatenatedIterator.html#remove--">remove()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConcatenatedIterator.html" title="minimal.sequence.iterator内のクラス">ConcatenatedIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConditionedSkippingIterator.html#remove--">remove()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConditionedSkippingIterator.html" title="minimal.sequence.iterator内のクラス">ConditionedSkippingIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/ConditionedTakingIterator.html#remove--">remove()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/ConditionedTakingIterator.html" title="minimal.sequence.iterator内のクラス">ConditionedTakingIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/FilteredIterator.html#remove--">remove()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/FilteredIterator.html" title="minimal.sequence.iterator内のクラス">FilteredIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/FlatMappedIterator.html#remove--">remove()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/FlatMappedIterator.html" title="minimal.sequence.iterator内のクラス">FlatMappedIterator</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="minimal/sequence/iterator/MappedIterator.html#remove--">remove()</a></span> - クラス のメソッドminimal.sequence.iterator.<a href="minimal/sequence/iterator/MappedIterator.html" title="minimal.sequence.iterator内のクラス">MappedIterator</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="minimal/sequence/Sequence.html#rest--">rest()</a></span> - クラス のメソッドminimal.sequence.<a href="minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a></dt>
 <dd>
 <div class="block">最初の要素を除いた残りを返します。</div>
