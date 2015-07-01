@@ -7,6 +7,7 @@ import minimal.sequence.function.Predicate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -17,6 +18,7 @@ import java.util.Objects;
  * シーケンスをラップして操作するためのユーティリティを表します。
  */
 public final class Sequence<T> implements Iterable<T> {
+    public static final Sequence empty = new Sequence(Collections.emptyList(), 0);
     private final Iterable<T> items;
     private Integer size;   // 要素数のキャッシュ
 
@@ -36,7 +38,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return      シーケンス
      */
     public static <T> Sequence<T> of(Collection<T> items) {
-        return new Sequence<T>(items, items.size());
+        return items == null ? empty : new Sequence<T>(items, items.size());
     }
 
     /**
@@ -46,7 +48,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return      シーケンス
      */
     public static <T> Sequence<T> of(Iterable<T> items) {
-        return new Sequence<T>(items);
+        return items == null ? empty : new Sequence<T>(items);
     }
 
     /**
@@ -57,7 +59,7 @@ public final class Sequence<T> implements Iterable<T> {
      */
     @SafeVarargs
     public static <T> Sequence<T> of(T... items) {
-        return of(Arrays.asList(items));
+        return items == null || items.length == 0 ? empty : of(Arrays.asList(items));
     }
 
     /**
@@ -209,6 +211,36 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
+     * 他のシーケンスとマージしたペアシーケンスを返します。
+     * @param sequence マージ対象シーケンス
+     * @param <U>      マージ対象シーケンスの要素の型
+     * @return         ペアシーケンス
+     */
+    public <U> Sequence<Pair<T, U>> zip(final Iterable<? extends U> sequence) {
+        return new Sequence<Pair<T, U>>(new Iterable<Pair<T, U>>() {
+            @Override
+            public Iterator<Pair<T, U>> iterator() {
+                return new ZippedIterator<T, U>(items.iterator(), sequence.iterator());
+            }
+        });
+    }
+
+    /**
+     * 他のシーケンスとマージしたペアシーケンスを返します。
+     * @param sequence マージ対象シーケンス
+     * @param <U>      マージ対象シーケンスの要素の型
+     * @return         ペアシーケンス
+     */
+    public <U> Sequence<Pair<T, U>> zip(final U... sequence) {
+        return new Sequence<Pair<T, U>>(new Iterable<Pair<T, U>>() {
+            @Override
+            public Iterator<Pair<T, U>> iterator() {
+                return new ZippedIterator<T, U>(items.iterator(), Arrays.asList(sequence).iterator());
+            }
+        });
+    }
+
+    /**
      * 先頭から条件を満たす限り要素を抽出します。条件を満たさない最初の要素以降の要素を除外します。
      * @param predicate 条件
      * @return          先頭から条件を満たしている間の要素のシーケンス
@@ -317,9 +349,23 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
+     * 指定されたオブジェクトが含まれているかどうかを調べます。
+     * @param object オブジェクト
+     * @return       指定されたオブジェクトが含まれている場合は true, そうでない場合は false
+     */
+    public boolean contains(T object) {
+        for (T item : items) {
+            if (Objects.equals(item, object)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * 条件を満たす要素が含まれているかどうかを調べます。
      * @param predicate 条件
-     * @return          条件を満たす要素が含まれていれば true, そうでない場合は false
+     * @return          条件を満たす要素が含まれている場合は true, そうでない場合は false
      */
     public boolean any(Predicate<? super T> predicate) {
         for (T item : items) {
@@ -333,7 +379,7 @@ public final class Sequence<T> implements Iterable<T> {
     /**
      * すべての要素が条件を満たしているかどうかを調べます。
      * @param predicate 条件
-     * @return          すべての要素が条件を満たしていれば true, そうでない場合は false
+     * @return          すべての要素が条件を満たしている場合は true, そうでない場合は false
      */
     public boolean all(Predicate<? super T> predicate) {
         for (T item : items) {

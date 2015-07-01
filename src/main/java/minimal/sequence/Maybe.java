@@ -5,7 +5,6 @@ import minimal.sequence.function.Function;
 import minimal.sequence.function.Predicate;
 import minimal.sequence.function.Supplier;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Objects;
@@ -52,6 +51,14 @@ public final class Maybe<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         return this == nothing ? Collections.<T>emptyIterator() : Collections.singletonList(object).iterator();
+    }
+
+    /**
+     * 値を返します。
+     * @return 値
+     */
+    public T asNullable() {
+        return object;
     }
 
     /**
@@ -182,6 +189,16 @@ public final class Maybe<T> implements Iterable<T> {
      */
     public <U> Maybe<U> ofClass(Class<U> cls) {
         return this != nothing && cls.isInstance(object) ? Maybe.of(cls.cast(object)) : Maybe.<U>nothing();
+    }
+
+    /**
+     * 他の Maybe コンテナとマージしてペアのコンテナを返します。
+     * @param other 他の Maybe コンテナ
+     * @param <U>   他の Maybe コンテナの値の型
+     * @return      ペアのコンテナ
+     */
+    public <U> Maybe<Pair<T, U>> zip(Maybe<? extends U> other) {
+        return this == nothing || other == nothing ? nothing : Maybe.of(Pair.of(object, other.object));
     }
 
     /**

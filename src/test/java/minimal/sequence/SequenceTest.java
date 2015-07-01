@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -61,6 +60,17 @@ public class SequenceTest {
     }
 
     @Test
+    public void testZip() throws Exception {
+        assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2).zip(Sequence.of("abc", "def")));
+        assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2, 3).zip(Sequence.of("abc", "def")));
+        assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2).zip(Sequence.of("abc", "def", "ghi")));
+
+        assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2).zip("abc", "def"));
+        assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2, 3).zip("abc", "def"));
+        assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2).zip("abc", "def", "ghi"));
+    }
+
+    @Test
     public void testTakeWhile() throws Exception {
         assertEquals(Sequence.<Integer>of(1, 2), Sequence.of(1, 2, 3, 2, 1).takeWhile(x -> x < 3));
         assertEquals(Sequence.<Integer>of(), Sequence.of(1, 2, 3, 2, 1).takeWhile(x -> x > 1));
@@ -104,6 +114,13 @@ public class SequenceTest {
         assertEquals(Maybe.of(1), Sequence.of(1).single());
         assertEquals(Maybe.nothing, Sequence.of().single());
         assertEquals(Maybe.nothing, Sequence.of(1, 2).single());
+    }
+
+    @Test
+    public void testContains() throws Exception {
+        assertFalse(Sequence.of().contains(1));
+        assertTrue(Sequence.of("abc", "def").contains("def"));
+        assertFalse(Sequence.of("abc", "def").contains("de"));
     }
 
     @Test

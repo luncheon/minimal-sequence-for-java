@@ -9,6 +9,13 @@ import static org.junit.Assert.*;
  */
 public class MaybeTest {
     @Test
+    public void testAsNullable() throws Exception {
+        assertEquals(Integer.valueOf(1), Maybe.of(1).asNullable());
+        assertEquals(null, Maybe.<Integer>nothing().asNullable());
+        assertEquals(null, Maybe.of((Integer) null).asNullable());
+    }
+
+    @Test
     public void testOrElse() throws Exception {
         assertEquals(Integer.valueOf(1), Maybe.of(1).orElse(2));
         assertEquals(Integer.valueOf(2), Maybe.<Integer>nothing().orElse(2));
@@ -91,6 +98,13 @@ public class MaybeTest {
         assertEquals(Maybe.of(1), Maybe.of(1).ofClass(Number.class));
         assertEquals(Maybe.nothing, Maybe.of(1).ofClass(Double.class));
         assertEquals(Maybe.nothing, Maybe.nothing.ofClass(Object.class));
+    }
+
+    @Test
+    public void testZip() throws Exception {
+        assertEquals(Maybe.of(Pair.of(1, "abc")), Maybe.of(1).zip(Maybe.of("abc")));
+        assertEquals(Maybe.nothing, Maybe.nothing.zip(Maybe.of("abc")));
+        assertEquals(Maybe.nothing, Maybe.of(1).zip(Maybe.nothing));
     }
 
     @Test
