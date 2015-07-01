@@ -4,27 +4,15 @@ import minimal.sequence.function.Consumer;
 import minimal.sequence.function.Function;
 import minimal.sequence.function.Predicate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * シーケンスをラップして操作するためのユーティリティを表します。
  */
 public final class Sequence<T> implements Iterable<T> {
-    public static final Sequence empty = new Sequence(Collections.emptyList(), 0);
+    public static final Sequence empty = new Sequence<Object>(Collections.emptyList(), 0);
     private final Iterable<T> items;
     private Integer size;   // 要素数のキャッシュ
-
-    private Sequence(Iterable<T> items) {
-        this(items, null);
-    }
 
     private Sequence(Iterable<T> items, Integer size) {
         this.items = items;
@@ -48,7 +36,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return      シーケンス
      */
     public static <T> Sequence<T> of(Iterable<T> items) {
-        return items == null ? empty : new Sequence<T>(items);
+        return items == null ? empty : new Sequence<T>(items, null);
     }
 
     /**
@@ -60,6 +48,16 @@ public final class Sequence<T> implements Iterable<T> {
     @SafeVarargs
     public static <T> Sequence<T> of(T... items) {
         return items == null || items.length == 0 ? empty : of(Arrays.asList(items));
+    }
+
+    /**
+     * シーケンスを作成します。現状の実装では {@link Collections#list} を利用しているため先行評価となります。
+     * @param items 要素
+     * @param <T>   要素の型
+     * @return      シーケンス
+     */
+    public static <T> Sequence<T> of(Enumeration<T> items) {
+        return items == null ? empty : of(Collections.list(items));
     }
 
     /**
@@ -169,7 +167,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return       射影結果の要素を連結したシーケンス
      */
     public <R> Sequence<R> flatMap(final Function<? super T, ? extends Iterable<R>> mapper) {
-        return new Sequence<R>(new Iterable<R>() {
+        return of(new Iterable<R>() {
             @Override
             public Iterator<R> iterator() {
                 return new FlatMappedIterator<T, R>(items.iterator(), mapper);
@@ -183,7 +181,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return          条件を満たす要素のシーケンス
      */
     public Sequence<T> filter(final Predicate<? super T> predicate) {
-        return new Sequence<T>(new Iterable<T>() {
+        return of(new Iterable<T>() {
             public Iterator<T> iterator() {
                 return new FilteredIterator<T>(items.iterator(), predicate);
             }
@@ -217,7 +215,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return         ペアシーケンス
      */
     public <U> Sequence<Pair<T, U>> zip(final Iterable<? extends U> sequence) {
-        return new Sequence<Pair<T, U>>(new Iterable<Pair<T, U>>() {
+        return of(new Iterable<Pair<T, U>>() {
             @Override
             public Iterator<Pair<T, U>> iterator() {
                 return new ZippedIterator<T, U>(items.iterator(), sequence.iterator());
@@ -231,8 +229,9 @@ public final class Sequence<T> implements Iterable<T> {
      * @param <U>      マージ対象シーケンスの要素の型
      * @return         ペアシーケンス
      */
-    public <U> Sequence<Pair<T, U>> zip(final U... sequence) {
-        return new Sequence<Pair<T, U>>(new Iterable<Pair<T, U>>() {
+    @SafeVarargs
+    public final <U> Sequence<Pair<T, U>> zip(final U... sequence) {
+        return of(new Iterable<Pair<T, U>>() {
             @Override
             public Iterator<Pair<T, U>> iterator() {
                 return new ZippedIterator<T, U>(items.iterator(), Arrays.asList(sequence).iterator());
@@ -246,7 +245,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return          先頭から条件を満たしている間の要素のシーケンス
      */
     public Sequence<T> takeWhile(final Predicate<? super T> predicate) {
-        return new Sequence<T>(new Iterable<T>() {
+        return of(new Iterable<T>() {
             @Override
             public Iterator<T> iterator() {
                 return new ConditionedTakingIterator<T>(items.iterator(), predicate);
@@ -260,7 +259,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return          先頭から条件を満たしている間の要素を除いたシーケンス
      */
     public Sequence<T> skipWhile(final Predicate<? super T> predicate) {
-        return new Sequence<T>(new Iterable<T>() {
+        return of(new Iterable<T>() {
             @Override
             public Iterator<T> iterator() {
                 return new ConditionedSkippingIterator<T>(items.iterator(), predicate);
@@ -274,7 +273,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return      シーケンス
      */
     public Sequence<T> append(final Iterable<? extends T> after) {
-        return new Sequence<T>(new Iterable<T>() {
+        return of(new Iterable<T>() {
             public Iterator<T> iterator() {
                 return new ConcatenatedIterator<T>(items.iterator(), after.iterator());
             }
@@ -297,7 +296,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return       シーケンス
      */
     public Sequence<T> prepend(final Iterable<? extends T> before) {
-        return new Sequence<T>(new Iterable<T>() {
+        return of(new Iterable<T>() {
             public Iterator<T> iterator() {
                 return new ConcatenatedIterator<T>(before.iterator(), items.iterator());
             }
