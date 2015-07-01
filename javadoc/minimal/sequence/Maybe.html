@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":9,"i9":9,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":9,"i10":9,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li>前のクラス</li>
-<li><a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
+<li><a href="../../minimal/sequence/Pair.html" title="minimal.sequence内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?minimal/sequence/Maybe.html" target="_top">フレーム</a></li>
@@ -157,118 +157,130 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <th class="colLast" scope="col">メソッドと説明</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#asNullable--">asNullable</a></span>()</code>
+<div class="block">値を返します。</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#each-minimal.sequence.function.Consumer-">each</a></span>(<a href="../../minimal/sequence/function/Consumer.html" title="minimal.sequence.function内のインタフェース">Consumer</a>&lt;? super <a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;&nbsp;action)</code>
 <div class="block">値が存在する場合のみ操作を実行します。</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#each-minimal.sequence.function.Consumer-java.lang.Runnable-">each</a></span>(<a href="../../minimal/sequence/function/Consumer.html" title="minimal.sequence.function内のインタフェース">Consumer</a>&lt;? super <a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;&nbsp;ifExistence,
     java.lang.Runnable&nbsp;ifNothing)</code>
 <div class="block">値が存在する場合は値を引数に取る操作を実行します。</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#equals-java.lang.Object-">equals</a></span>(java.lang.Object&nbsp;o)</code>
 <div class="block">他のオブジェクトがこのオブジェクトと等しいかどうか調べます。</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#filter-minimal.sequence.function.Predicate-">filter</a></span>(<a href="../../minimal/sequence/function/Predicate.html" title="minimal.sequence.function内のインタフェース">Predicate</a>&lt;? super <a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;&nbsp;predicate)</code>
 <div class="block">値が存在して指定の条件を満たす場合はこのインスタンスをそのまま返します。</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>&lt;R&gt;&nbsp;<a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;R&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#flatMap-minimal.sequence.function.Function-">flatMap</a></span>(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>,? extends <a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;R&gt;&gt;&nbsp;mapper)</code>
 <div class="block">値が存在する場合は射影関数を適用した結果の Maybe コンテナを返します。</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#hashCode--">hashCode</a></span>()</code>
 <div class="block">ハッシュコードを取得します。</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.util.Iterator&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#iterator--">iterator</a></span>()</code>
 <div class="block">イテレーターを生成します。</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>&lt;R&gt;&nbsp;<a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;R&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#map-minimal.sequence.function.Function-">map</a></span>(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>,? extends R&gt;&nbsp;mapper)</code>
 <div class="block">値が存在する場合は射影関数を適用した結果を Maybe コンテナとして返します。</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>static &lt;T&gt;&nbsp;<a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#nothing--">nothing</a></span>()</code>
 <div class="block">値が存在しない Maybe コンテナを取得します。</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>static &lt;T&gt;&nbsp;<a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#of-T-">of</a></span>(T&nbsp;object)</code>
 <div class="block">オブジェクトから Maybe コンテナを取得します。</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>&lt;U&gt;&nbsp;<a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;U&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#ofClass-java.lang.Class-">ofClass</a></span>(java.lang.Class&lt;U&gt;&nbsp;cls)</code>
 <div class="block">値が指定された型のインスタンスの場合は値を指定された型にキャストした値を持つ Maybe コンテナを返します。</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#or-minimal.sequence.Maybe-">or</a></span>(<a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;&nbsp;ifNothing)</code>
 <div class="block">値が存在する場合はこのインスタンスを返します。</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#or-minimal.sequence.function.Supplier-">or</a></span>(<a href="../../minimal/sequence/function/Supplier.html" title="minimal.sequence.function内のインタフェース">Supplier</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;&gt;&nbsp;ifNothing)</code>
 <div class="block">値が存在する場合はこのインスタンスを返します。</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#orElse-minimal.sequence.function.Supplier-">orElse</a></span>(<a href="../../minimal/sequence/function/Supplier.html" title="minimal.sequence.function内のインタフェース">Supplier</a>&lt;? extends <a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;&nbsp;ifNothing)</code>
 <div class="block">値が存在する場合は値を返します。</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#orElse-T-">orElse</a></span>(<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&nbsp;ifNothing)</code>
 <div class="block">値が存在する場合は値を返します。</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#orMaybe-minimal.sequence.function.Supplier-">orMaybe</a></span>(<a href="../../minimal/sequence/function/Supplier.html" title="minimal.sequence.function内のインタフェース">Supplier</a>&lt;? extends <a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;&nbsp;ifNothing)</code>
 <div class="block">値が存在する場合はこのインスタンスを返します。</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#orMaybe-T-">orMaybe</a></span>(<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&nbsp;ifNothing)</code>
 <div class="block">値が存在する場合はこのインスタンスを返します。</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>&lt;R&gt;&nbsp;<a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス">Sequence</a>&lt;R&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#sequenceMap-minimal.sequence.function.Function-">sequenceMap</a></span>(<a href="../../minimal/sequence/function/Function.html" title="minimal.sequence.function内のインタフェース">Function</a>&lt;? super <a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>,? extends java.lang.Iterable&lt;R&gt;&gt;&nbsp;mapper)</code>
 <div class="block">値が存在する場合は射影関数を適用した結果のシーケンスを <a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス"><code>Sequence</code></a> として返します。</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#toString--">toString</a></span>()</code>
 <div class="block">文字列に変換します。</div>
+</td>
+</tr>
+<tr id="i20" class="altColor">
+<td class="colFirst"><code>&lt;U&gt;&nbsp;<a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Pair.html" title="minimal.sequence内のクラス">Pair</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>,U&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../minimal/sequence/Maybe.html#zip-minimal.sequence.Maybe-">zip</a></span>(<a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;? extends U&gt;&nbsp;other)</code>
+<div class="block">他の Maybe コンテナとマージしてペアのコンテナを返します。</div>
 </td>
 </tr>
 </table>
@@ -367,6 +379,20 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <dd><code>iterator</code>&nbsp;インタフェース内&nbsp;<code>java.lang.Iterable&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&gt;</code></dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>イテレーター</dd>
+</dl>
+</li>
+</ul>
+<a name="asNullable--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>asNullable</h4>
+<pre>public&nbsp;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>&nbsp;asNullable()</pre>
+<div class="block">値を返します。</div>
+<dl>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>値</dd>
 </dl>
 </li>
 </ul>
@@ -592,6 +618,24 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 </dl>
 </li>
 </ul>
+<a name="zip-minimal.sequence.Maybe-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>zip</h4>
+<pre>public&nbsp;&lt;U&gt;&nbsp;<a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;<a href="../../minimal/sequence/Pair.html" title="minimal.sequence内のクラス">Pair</a>&lt;<a href="../../minimal/sequence/Maybe.html" title="Maybe内の型パラメータ">T</a>,U&gt;&gt;&nbsp;zip(<a href="../../minimal/sequence/Maybe.html" title="minimal.sequence内のクラス">Maybe</a>&lt;? extends U&gt;&nbsp;other)</pre>
+<div class="block">他の Maybe コンテナとマージしてペアのコンテナを返します。</div>
+<dl>
+<dt><span class="paramLabel">型パラメータ:</span></dt>
+<dd><code>U</code> - 他の Maybe コンテナの値の型</dd>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>other</code> - 他の Maybe コンテナ</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>ペアのコンテナ</dd>
+</dl>
+</li>
+</ul>
 <a name="equals-java.lang.Object-">
 <!--   -->
 </a>
@@ -671,7 +715,7 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <div class="subNav">
 <ul class="navList">
 <li>前のクラス</li>
-<li><a href="../../minimal/sequence/Sequence.html" title="minimal.sequence内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
+<li><a href="../../minimal/sequence/Pair.html" title="minimal.sequence内のクラス"><span class="typeNameLink">次のクラス</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?minimal/sequence/Maybe.html" target="_top">フレーム</a></li>
