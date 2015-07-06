@@ -166,6 +166,13 @@ public class SequenceTest {
     }
 
     @Test
+    public void testSortBy() throws Exception {
+        Sequence<Pair<Integer, String>> source = Sequence.of(Pair.of(7, "b"), Pair.of(2, "b"), Pair.of(4, "c"), Pair.of(2, "a"));
+        assertEquals(Sequence.of(Pair.of(2, "b"), Pair.of(2, "a"), Pair.of(4, "c"), Pair.of(7, "b")), source.sortBy(Pair::first));
+        assertEquals(Sequence.of(Pair.of(2, "a"), Pair.of(7, "b"), Pair.of(2, "b"), Pair.of(4, "c")), source.sortBy(Pair::second));
+    }
+
+    @Test
     public void testJoinToString() throws Exception {
         assertEquals("1, 2, 3", Sequence.of(1, 2, 3).joinToString(", "));
         assertEquals("1", Sequence.of(1).joinToString(", "));

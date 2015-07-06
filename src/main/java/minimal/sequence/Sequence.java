@@ -404,9 +404,45 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * 比較可能な値への射影関数を適用して、結果が最小の要素を返します。
-     * @param comparableSelector 比較可能な値への射影関数
-     * @param <C>                比較可能な値の型
+     * 比較値への射影関数を適用して、比較値の昇順に要素を並べ替えます。
+     * @param comparableSelector 比較値への射影関数
+     * @param <C>                比較値の型
+     * @return                   比較値の昇順に並べ替えたシーケンス
+     */
+    public <C extends Comparable<C>> Sequence<T> sortBy(Function<? super T, ? extends C> comparableSelector) {
+        // 射影関数の適用回数を各要素に 1 回だけとするため、以下のように実装する
+        //   1. 射影関数を各要素に適用してペア (要素, 比較値) のリストを構築する
+        //   2. 比較値でソートする
+        //   3. ペアの 1 番目の要素 (元々の要素) を抽出するシーケンスを返す
+        return Sequence.of(sortBySecondOfPair(zip(map(comparableSelector)).toArrayList())).map(Pair.<T, C>firstSelector());
+    }
+
+    /**
+     * ペアのシーケンスを 2 番目の要素を比較値として昇順に並べ替えます。
+     * @param pairs ペアシーケンス
+     * @param <T>   1 番目の要素の型
+     * @param <C>   2 番目の要素の型
+     * @return      2 番目の要素の昇順に並べ替えたペアシーケンス
+     */
+    private static <T, C extends Comparable<C>> Iterable<Pair<T, C>> sortBySecondOfPair(Iterable<Pair<T, C>> pairs) {
+        Iterator<Pair<T, C>> iterator = pairs.iterator();
+        if (!iterator.hasNext()) {
+            return pairs;
+        }
+        ArrayList<Pair<T, C>> lesser = new ArrayList<Pair<T, C>>();
+        ArrayList<Pair<T, C>> greater = new ArrayList<Pair<T, C>>();
+        Pair<T, C> pivot = iterator.next();
+        while (iterator.hasNext()) {
+            Pair<T, C> current = iterator.next();
+            (current.second().compareTo(pivot.second()) < 0 ? lesser : greater).add(current);
+        }
+        return Sequence.of(pivot).prepend(sortBySecondOfPair(lesser)).append(sortBySecondOfPair(greater));
+    }
+
+    /**
+     * 比較値への射影関数を適用して、比較値が最小の要素を返します。
+     * @param comparableSelector 比較値への射影関数
+     * @param <C>                比較値の型
      * @return                   最小要素
      */
     public <C extends Comparable<C>> Maybe<T> minBy(Function<? super T, ? extends C> comparableSelector) {
@@ -414,9 +450,9 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
-     * 比較可能な値への射影関数を適用して、結果が最大の要素を返します。
-     * @param comparableSelector 比較可能な値への射影関数
-     * @param <C>                比較可能な値の型
+     * 比較値への射影関数を適用して、比較値が最大の要素を返します。
+     * @param comparableSelector 比較値への射影関数
+     * @param <C>                比較値の型
      * @return                   最大要素
      */
     public <C extends Comparable<C>> Maybe<T> maxBy(Function<? super T, ? extends C> comparableSelector) {

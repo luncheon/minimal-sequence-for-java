@@ -1,5 +1,7 @@
 package minimal.sequence;
 
+import minimal.sequence.function.Function;
+
 import java.util.Objects;
 
 /**
@@ -64,5 +66,14 @@ public final class Pair<F, S> {
     @Override
     public String toString() {
         return "Pair{" + first + "," + second + '}';
+    }
+
+    static <F, S> Function<Pair<F, S>, F> firstSelector() {
+        return new Function<Pair<F, S>, F>() {
+            @Override
+            public F apply(Pair<F, S> pair) {
+                return pair.first;
+            }
+        };
     }
 }
