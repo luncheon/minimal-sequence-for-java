@@ -47,3 +47,15 @@ Sequence.of("123", "456", "789")        // <= Array or Iterable
         .each(System.out::println)      // 44
         .orElse(() -> 56);              // => Integer(44)
 ```
+
+クイックソート実装例
+```
+static Sequence<Integer> sort(Sequence<Integer> sequence) {
+    return sequence.match(
+            () -> sequence,
+            (first, rest) -> Sequence.of(first)
+                    .prepend(sort(rest.filter(x -> x <= first)))
+                    .append(sort(rest.filter(x -> x > first)))
+    );
+}
+```
