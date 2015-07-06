@@ -48,7 +48,8 @@ Sequence.of("123", "456", "789")        // <= Array or Iterable
         .orElse(() -> 56);              // => Integer(44)
 ```
 
-クイックソート実装例
+
+ライブラリを利用したクイックソート実装例
 ```
 static Sequence<Integer> sort(Sequence<Integer> sequence) {
     return sequence.match(
