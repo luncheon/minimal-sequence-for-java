@@ -1,8 +1,10 @@
 package minimal.sequence;
 
+import minimal.sequence.function.BiFunction;
 import minimal.sequence.function.Consumer;
 import minimal.sequence.function.Function;
 import minimal.sequence.function.Predicate;
+import minimal.sequence.function.Supplier;
 
 import java.util.*;
 
@@ -158,6 +160,18 @@ public final class Sequence<T> implements Iterable<T> {
                 return new MappedIterator<T, R>(items.iterator(), mapper);
             }
         }, size);
+    }
+
+    /**
+     * シーケンスが空の場合はサプライヤーから値を生成します。シーケンスが空でない場合は最初の要素と残りの要素を射影関数に適用します。
+     * @param ifEmpty シーケンスが空の場合の結果を生成するサプライヤー
+     * @param ifAny   シーケンスが空でない場合に最初の要素と残りの要素から結果を算出する射影関数
+     * @param <R>     射影結果の型
+     * @return        射影結果
+     */
+    public <R> R match(Supplier<? extends R> ifEmpty, BiFunction<? super T, ? super Sequence<T>, ? extends R> ifAny) {
+        Iterator<T> iterator = items.iterator();
+        return iterator.hasNext() ? ifAny.apply(iterator.next(), rest()) : ifEmpty.get();
     }
 
     /**

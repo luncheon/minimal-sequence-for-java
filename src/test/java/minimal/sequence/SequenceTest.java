@@ -40,6 +40,20 @@ public class SequenceTest {
         assertEquals(Sequence.of(), Sequence.<Integer>of().map(x -> x * x));
     }
 
+    private static Sequence<Integer> sort(Sequence<Integer> sequence) {
+        return sequence.match(
+                () -> sequence,
+                (first, rest) -> Sequence.of(first)
+                        .prepend(sort(rest.filter(x -> x <= first)))
+                        .append(sort(rest.filter(x -> x > first)))
+        );
+    }
+
+    @Test
+    public void testMatch() throws Exception {
+        assertEquals(Sequence.of(2, 3, 5, 7, 7, 11), sort(Sequence.of(7, 11, 5, 3, 7, 2)));
+    }
+
     @Test
     public void testFlatMap() throws Exception {
         assertEquals(Sequence.of("2", "3", "4", "6", "6", "9"), Sequence.of(1, 2, 3).flatMap(x -> Arrays.asList(String.valueOf(x * 2), String.valueOf(x * 3))));

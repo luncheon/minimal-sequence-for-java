@@ -57,10 +57,10 @@ public class MaybeTest {
         Maybe.<Integer>nothing().each(x -> builder.append(String.valueOf(x)));
         assertEquals("1", builder.toString());
 
-        Maybe.of(1).each(x -> builder.append(String.valueOf(x)), () -> builder.append("nothing"));
+        Maybe.of(1).each(() -> builder.append("nothing"), x -> builder.append(String.valueOf(x)));
         assertEquals("11", builder.toString());
 
-        Maybe.<Integer>nothing().each(x -> builder.append(String.valueOf(x)), () -> builder.append("nothing"));
+        Maybe.<Integer>nothing().each(() -> builder.append("nothing"), x -> builder.append(String.valueOf(x)));
         assertEquals("11nothing", builder.toString());
     }
 
@@ -69,6 +69,12 @@ public class MaybeTest {
         assertEquals(Maybe.of("1"), Maybe.of(1).map(String::valueOf));
         assertEquals(Maybe.nothing, Maybe.<Integer>nothing().map(String::valueOf));
         assertEquals(Maybe.nothing, Maybe.of(1).map(x -> null));
+    }
+
+    @Test
+    public void testMatch() throws Exception {
+        assertEquals("1", Maybe.of(1).match(() -> "", String::valueOf));
+        assertEquals("", Maybe.<Integer>nothing().match(() -> "", String::valueOf));
     }
 
     @Test

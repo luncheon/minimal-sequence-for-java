@@ -128,16 +128,16 @@ public final class Maybe<T> implements Iterable<T> {
     }
 
     /**
-     * 値が存在する場合は値を引数に取る操作を実行します。値が存在しない場合は引数のない操作を実行します。
-     * @param ifExistence 値が存在する場合の操作
+     * 値が存在しない場合は引数のない操作を実行します。値が存在する場合は値を引数に取る操作を実行します。
      * @param ifNothing   値が存在しない場合の操作
+     * @param ifExistence 値が存在する場合の操作
      * @return            このインスタンス
      */
-    public Maybe<T> each(Consumer<? super T> ifExistence, Runnable ifNothing) {
-        if (this != nothing) {
-            ifExistence.accept(object);
-        } else {
+    public Maybe<T> each(Runnable ifNothing, Consumer<? super T> ifExistence) {
+        if (this == nothing) {
             ifNothing.run();
+        } else {
+            ifExistence.accept(object);
         }
         return this;
     }
@@ -150,6 +150,17 @@ public final class Maybe<T> implements Iterable<T> {
      */
     public <R> Maybe<R> map(Function<? super T, ? extends R> mapper) {
         return this == nothing ? Maybe.<R>nothing() : of(mapper.apply(object));
+    }
+
+    /**
+     * 値が存在しない場合はサプライヤーから値を生成して返します。値が存在する場合は射影関数を適用した結果を返します。
+     * @param ifNothing サプライヤー
+     * @param ifJust    射影関数
+     * @param <R>       射影結果の型
+     * @return          射影結果
+     */
+    public <R> R match(Supplier<? extends R> ifNothing, Function<? super T, ? extends R> ifJust) {
+        return this == nothing ? ifNothing.get() : ifJust.apply(object);
     }
 
     /**
