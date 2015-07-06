@@ -5,10 +5,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="minimal-sequence : Retrolambda と併せて利用する最小限のシーケンス操作ライブラリ">
+    <title>minimal-sequence</title>
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>minimal-sequence</title>
+    <!-- highlight.js: https://highlightjs.org/ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/agate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <style>
+        pre { padding: 0; }
+        pre>code { width: auto; }
+    </style>
   </head>
 
   <body>
@@ -36,6 +45,16 @@
       <section id="main_content" class="inner">
         <h3><a class="anchor" href="#java-8-%E6%9C%AA%E6%BA%80%E3%81%AE%E5%85%A8%E3%81%A6%E3%81%AE%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92%E7%94%9F%E3%81%BE%E3%82%8C%E3%82%8B%E5%89%8D%E3%81%AB%E6%B6%88%E3%81%97%E5%8E%BB%E3%82%8A%E3%81%9F%E3%81%84" aria-hidden="true"><span class="octicon octicon-link"></span></a>Java 8 未満の全てのプロジェクトを、生まれる前に消し去りたい。</h3>
         <p>それができないなら、せめて <a href="https://github.com/orfjackal/retrolambda/">Retrolambda</a> と <a href="http://www.threeten.org/threetenbp/">ThreeTen Backport</a> と少しばかりのシーケンス操作ライブラリを。。</p>
+
+        <pre><code class="java">// クイックソート
+static Sequence&lt;Integer&gt; sort(Sequence&lt;Integer&gt; sequence) {
+    return sequence.match(
+            () -> sequence,
+            (first, rest) -&gt; Sequence.of(first)
+                    .prepend(sort(rest.filter(x -&gt; x &lt;= first)))
+                    .append(sort(rest.filter(x -&gt; x &gt; first)))
+    );
+}</code></pre>
       </section>
     </div>
 
