@@ -109,14 +109,18 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>すべての実装されたインタフェース:</dt>
-<dd>java.lang.Iterable&lt;T&gt;</dd>
+<dd>java.io.Serializable, java.lang.Iterable&lt;T&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public final class <span class="typeNameLabel">Maybe&lt;T&gt;</span>
 extends java.lang.Object
-implements java.lang.Iterable&lt;T&gt;</pre>
+implements java.io.Serializable, java.lang.Iterable&lt;T&gt;</pre>
 <div class="block">値が存在しない可能性のあるコンテナを表します。</div>
+<dl>
+<dt><span class="seeLabel">関連項目:</span></dt>
+<dd><a href="../../serialized-form.html#minimal.sequence.Maybe">直列化された形式</a></dd>
+</dl>
 </li>
 </ul>
 </div>
