@@ -2,12 +2,13 @@ package minimal.sequence;
 
 import minimal.sequence.function.Function;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * 2 つの値を表します。
  */
-public final class Pair<F, S> {
+public final class Pair<F, S> implements Serializable {
     private final F first;
     private final S second;
 

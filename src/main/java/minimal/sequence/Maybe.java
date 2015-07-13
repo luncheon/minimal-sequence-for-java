@@ -5,6 +5,7 @@ import minimal.sequence.function.Function;
 import minimal.sequence.function.Predicate;
 import minimal.sequence.function.Supplier;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Objects;
@@ -12,7 +13,7 @@ import java.util.Objects;
 /**
  * 値が存在しない可能性のあるコンテナを表します。
  */
-public final class Maybe<T> implements Iterable<T> {
+public final class Maybe<T> implements Serializable, Iterable<T> {
     private final T object;
 
     private Maybe(T object) {
