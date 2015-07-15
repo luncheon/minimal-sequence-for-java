@@ -223,11 +223,11 @@ public final class Maybe<T> implements Serializable, Iterable<T> {
     }
 
     /**
-     * 条件を満たす値を持つかどうかを調べます。
+     * 条件を満たす値が存在するかどうかを調べます。
      * @param predicate 条件
-     * @return          値が存在して条件を満たす場合は true, そうでない場合は false
+     * @return          条件を満たす値が存在する場合は true, そうでない場合は false
      */
-    public boolean any(Predicate<T> predicate) {
+    public boolean any(Predicate<? super T> predicate) {
         return this != nothing && predicate.test(object);
     }
 
