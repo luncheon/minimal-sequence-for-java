@@ -214,6 +214,24 @@ public final class Maybe<T> implements Serializable, Iterable<T> {
     }
 
     /**
+     * 指定された値を持つかどうかを調べます。
+     * @param value 値
+     * @return 指定された値を持つ場合は true, そうでない場合は false
+     */
+    public boolean contains(T value) {
+        return this != nothing && object.equals(value);
+    }
+
+    /**
+     * 条件を満たす値を持つかどうかを調べます。
+     * @param predicate 条件
+     * @return          値が存在して条件を満たす場合は true, そうでない場合は false
+     */
+    public boolean any(Predicate<T> predicate) {
+        return this != nothing && predicate.test(object);
+    }
+
+    /**
      * 他のオブジェクトがこのオブジェクトと等しいかどうか調べます。
      * @param o 他のオブジェクト
      * @return 他のオブジェクトがこのオブジェクトと等しい場合は true, そうでない場合は false

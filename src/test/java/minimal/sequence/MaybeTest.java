@@ -114,6 +114,22 @@ public class MaybeTest {
     }
 
     @Test
+    public void testContains() throws Exception {
+        assertTrue(Maybe.of("abc").contains("abc"));
+        assertFalse(Maybe.of("abc").contains("ab"));
+        assertFalse(Maybe.<String>nothing().contains("ab"));
+        assertFalse(Maybe.<String>nothing().contains(null));
+    }
+
+    @Test
+    public void testAny() throws Exception {
+        assertTrue(Maybe.of("ab").any("abc"::startsWith));
+        assertFalse(Maybe.of("ac").any("abc"::startsWith));
+        assertFalse(Maybe.<String>nothing().any("abc"::startsWith));
+        assertFalse(Maybe.<String>nothing().any(s -> s == null));
+    }
+
+    @Test
     public void testToString() throws Exception {
         assertEquals("Maybe{Nothing}", Maybe.nothing.toString());
         assertEquals("Maybe{Just 1}", Maybe.of(1).toString());
