@@ -39,13 +39,17 @@ Java 8 未満で実装するという苦行を何度も繰り返していると�
 ```
 Sequence.of("123", "456", "789")        // <= Array or Iterable
         .map(Integer::valueOf)
-        .prepend(11, 22).prepend(Arrays.asList(33, 44))
-        .append(55, 66).append(Arrays.asList(77, 88))
+        .prepend(22, 33, 44)
+        .append(55, 66, 77)
         .filter(x -> x % 2 == 0)
-        .each(System.out::println)      // 44 22 456 66 88
-        .first()                        // => Maybe<Integer>(44)
-        .each(System.out::println)      // 44
-        .orElse(() -> 56);              // => Integer(44)
+        .each(System.out::println)      // 22 44 456 66
+        .first()                        // => Maybe<Integer>(22)
+        .each(System.out::println)      // 22
+        .map(x -> x + 100)
+        .match(
+                () -> "empty",
+                x -> "exists " + x
+        )                               // => String("exists 122")
 ```
 
 

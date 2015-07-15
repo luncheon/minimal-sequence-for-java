@@ -196,4 +196,23 @@ public class SequenceTest {
         assertEquals(Sequence.<Integer>of(1, 4, 7), groups.get(1));
         assertEquals(Sequence.<Integer>of(2, 5), groups.get(2));
     }
+
+    @Test
+    public void testSample() throws Exception {
+        assertEquals("exists 122",
+                Sequence.of("123", "456", "789")        // <= Array or Iterable
+                        .map(Integer::valueOf)
+                        .prepend(22, 33, 44)
+                        .append(55, 66, 77)
+                        .filter(x -> x % 2 == 0)
+                        .each(System.out::println)      // 22 44 456 66
+                        .first()                        // => Maybe<Integer>(22)
+                        .each(System.out::println)      // 22
+                        .map(x -> x + 100)
+                        .match(
+                                () -> "empty",
+                                x -> "exists " + x
+                        )                               // => String("exists 122")
+        );
+    }
 }
