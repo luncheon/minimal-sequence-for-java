@@ -5,7 +5,7 @@
 [minimal-sequence](https://github.com/luncheon/minimal-sequence-for-java/) は Java 5, 6, 7 のために最小限のシーケンス操作を提供します。<br>
 [Retrolambda](https://github.com/orfjackal/retrolambda/) の利用を前提としています。
 
-ただし、「最小限」のシーケンス操作とは「私にとっての最小限」です。<br>
+ただ、「最小限」のシーケンス操作とは「私にとっての最小限」です。<br>
 『[ブロートウェアと80/20の神話](http://japanese.joelonsoftware.com/Articles/StrategyLetterIV.html)』のとおり、「機能限定版の軽量ソフトウェア」は結局のところ誰のニーズにも応えられないでしょう。
 
 世の中には素敵なコレクションライブラリがたくさんあります。<br>
@@ -53,8 +53,8 @@ Sequence.of("123", "456", "789")        // <= Array or Iterable
 ```
 
 
-ライブラリを利用したクイックソート実装例
 ```java
+// クイックソート
 static Sequence<Integer> sort(Sequence<Integer> sequence) {
     return sequence.match(
             () -> sequence,
