@@ -36,7 +36,7 @@ Java 8 未満で実装するという苦行を何度も繰り返していると�
 
 ### コード例
 
-```
+```java
 Sequence.of("123", "456", "789")        // <= Array or Iterable
         .map(Integer::valueOf)
         .prepend(22, 33, 44)
@@ -54,7 +54,7 @@ Sequence.of("123", "456", "789")        // <= Array or Iterable
 
 
 ライブラリを利用したクイックソート実装例
-```
+```java
 static Sequence<Integer> sort(Sequence<Integer> sequence) {
     return sequence.match(
             () -> sequence,
