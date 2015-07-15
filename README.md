@@ -43,13 +43,15 @@ Sequence.of("123", "456", "789")        // <= Array or Iterable
         .append(55, 66, 77)
         .filter(x -> x % 2 == 0)
         .each(System.out::println)      // 22 44 456 66
-        .first()                        // => Maybe<Integer>(22)
-        .each(System.out::println)      // 22
+        .sortBy(x -> -x)
+        .each(System.out::println)      // 456 66 44 22
+        .first()                        // => Maybe<Integer>(456)
+        .each(System.out::println)      // 456
         .map(x -> x + 100)
         .match(
                 () -> "empty",
                 x -> "exists " + x
-        )                               // => String("exists 122")
+        )                               // => String("exists 556")
 ```
 
 
