@@ -278,37 +278,28 @@ Full-Width Styles
   z-index: 10;
 }
 
-#javadoc_banner {
+.banner {
   margin: 0 5px;
   padding: 8px 12px;
   color: #fff;
-  background: #4D7A97;
   font-weight: 700;
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
+  white-space: nowrap;
+}
+
+#javadoc_banner {
+  background: #4D7A97;
 }
 
 #jar_banner {
-  margin: 0 5px;
-  padding: 8px 12px;
-  color: #fff;
   background: #c078a0;
-  font-weight: 700;
-  box-shadow: 0 0 10px rgba(0,0,0,.5);
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
 }
 
 #forkme_banner {
-  margin: 0 5px;
-  padding: 8px 50px 8px 12px;
-  color: #fff;
+  padding-right: 50px;
   background: url('../images/blacktocat.png') #0090ff no-repeat 95% 60%;
-  font-weight: 700;
-  box-shadow: 0 0 10px rgba(0,0,0,.5);
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
 }
 
 #header_wrap {
@@ -416,6 +407,11 @@ Small Device Styles
   .inner {
     min-width: 320px;
     max-width: 480px;
+  }
+
+  .banner {
+    margin: 0 2px;
+    padding: 6px 8px;
   }
 
   #project_title {
