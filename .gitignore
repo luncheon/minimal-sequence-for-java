@@ -1,6 +1,4 @@
 .gradle/
 .idea/
-build/*
-!build/docs/
-!build/libs/
+build/
 *.iml
