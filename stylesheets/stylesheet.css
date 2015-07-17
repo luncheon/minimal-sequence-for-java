@@ -291,7 +291,7 @@ Full-Width Styles
 
 #jar_banner {
   margin: 0 5px;
-  padding: 8px 16px;
+  padding: 8px 12px;
   color: #fff;
   background: #c078a0;
   font-weight: 700;
@@ -302,7 +302,7 @@ Full-Width Styles
 
 #forkme_banner {
   margin: 0 5px;
-  padding: 8px 50px 8px 10px;
+  padding: 8px 50px 8px 12px;
   color: #fff;
   background: url('../images/blacktocat.png') #0090ff no-repeat 95% 60%;
   font-weight: 700;
