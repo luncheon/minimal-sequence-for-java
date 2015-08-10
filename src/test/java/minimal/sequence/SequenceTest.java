@@ -78,10 +78,12 @@ public class SequenceTest {
         assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2).zip(Sequence.of("abc", "def")));
         assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2, 3).zip(Sequence.of("abc", "def")));
         assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2).zip(Sequence.of("abc", "def", "ghi")));
+        assertEquals(Sequence.<Pair<Integer, String>>of(), Sequence.of(1, 2).zip(Sequence.of((Iterable<String>) null)));
 
         assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2).zip("abc", "def"));
         assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2, 3).zip("abc", "def"));
         assertEquals(Sequence.of(Pair.of(1, "abc"), Pair.of(2, "def")), Sequence.of(1, 2).zip("abc", "def", "ghi"));
+        assertEquals(Sequence.<Pair<Integer, String>>of(), Sequence.of(1, 2).zip(Sequence.of((String[]) null)));
     }
 
     @Test
@@ -102,12 +104,14 @@ public class SequenceTest {
     public void testAppend() throws Exception {
         assertEquals(Sequence.<String>of("ab", "cd", "ef", "gh"), Sequence.of("ab", "cd").append("ef", "gh"));
         assertEquals(Sequence.<String>of("ef", "gh"), Sequence.of().append("ef", "gh"));
+        assertEquals(Sequence.<String>of("ab", "cd"), Sequence.of("ab", "cd").append((String[]) null));
     }
 
     @Test
     public void testPrepend() throws Exception {
         assertEquals(Sequence.<String>of("ab", "cd", "ef", "gh"), Sequence.of("ef", "gh").prepend("ab", "cd"));
         assertEquals(Sequence.<String>of("ef", "gh"), Sequence.of().prepend("ef", "gh"));
+        assertEquals(Sequence.<String>of("ab", "cd"), Sequence.of("ab", "cd").prepend((String[]) null));
     }
 
     @Test

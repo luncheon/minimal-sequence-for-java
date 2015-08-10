@@ -301,7 +301,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return         ペアシーケンス
      */
     public <U> Sequence<Pair<T, U>> zip(final Iterable<? extends U> sequence) {
-        return of(new Iterable<Pair<T, U>>() {
+        return sequence == null ? empty : of(new Iterable<Pair<T, U>>() {
             @Override
             public Iterator<Pair<T, U>> iterator() {
                 return new ZippedIterator<T, U>(items.iterator(), sequence.iterator());
@@ -317,12 +317,7 @@ public final class Sequence<T> implements Iterable<T> {
      */
     @SafeVarargs
     public final <U> Sequence<Pair<T, U>> zip(final U... sequence) {
-        return of(new Iterable<Pair<T, U>>() {
-            @Override
-            public Iterator<Pair<T, U>> iterator() {
-                return new ZippedIterator<T, U>(items.iterator(), Arrays.asList(sequence).iterator());
-            }
-        });
+        return zip(sequence == null ? null : Arrays.asList(sequence));
     }
 
     /**
@@ -359,7 +354,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return      シーケンス
      */
     public Sequence<T> append(final Iterable<? extends T> after) {
-        return of(new Iterable<T>() {
+        return after == null ? this : of(new Iterable<T>() {
             public Iterator<T> iterator() {
                 return new ConcatenatedIterator<T>(items.iterator(), after.iterator());
             }
@@ -373,7 +368,7 @@ public final class Sequence<T> implements Iterable<T> {
      */
     @SafeVarargs
     public final Sequence<T> append(T... after) {
-        return append(Arrays.asList(after));
+        return append(after == null ? null : Arrays.asList(after));
     }
 
     /**
@@ -382,7 +377,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return       シーケンス
      */
     public Sequence<T> prepend(final Iterable<? extends T> before) {
-        return of(new Iterable<T>() {
+        return before == null ? this : of(new Iterable<T>() {
             public Iterator<T> iterator() {
                 return new ConcatenatedIterator<T>(before.iterator(), items.iterator());
             }
@@ -396,7 +391,7 @@ public final class Sequence<T> implements Iterable<T> {
      */
     @SafeVarargs
     public final Sequence<T> prepend(T... before) {
-        return prepend(Arrays.asList(before));
+        return prepend(before == null ? null : Arrays.asList(before));
     }
 
     /**
