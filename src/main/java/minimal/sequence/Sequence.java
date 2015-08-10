@@ -53,6 +53,78 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
+     * シーケンスを作成します。
+     * @param items 要素
+     * @return      シーケンス
+     */
+    public static Sequence<Byte> of(byte[] items) {
+        return of(PrimitiveArrays.wrap(items));
+    }
+
+    /**
+     * シーケンスを作成します。
+     * @param items 要素
+     * @return      シーケンス
+     */
+    public static Sequence<Short> of(short[] items) {
+        return of(PrimitiveArrays.wrap(items));
+    }
+
+    /**
+     * シーケンスを作成します。
+     * @param items 要素
+     * @return      シーケンス
+     */
+    public static Sequence<Integer> of(int[] items) {
+        return of(PrimitiveArrays.wrap(items));
+    }
+
+    /**
+     * シーケンスを作成します。
+     * @param items 要素
+     * @return      シーケンス
+     */
+    public static Sequence<Long> of(long[] items) {
+        return of(PrimitiveArrays.wrap(items));
+    }
+
+    /**
+     * シーケンスを作成します。
+     * @param items 要素
+     * @return      シーケンス
+     */
+    public static Sequence<Float> of(float[] items) {
+        return of(PrimitiveArrays.wrap(items));
+    }
+
+    /**
+     * シーケンスを作成します。
+     * @param items 要素
+     * @return      シーケンス
+     */
+    public static Sequence<Double> of(double[] items) {
+        return of(PrimitiveArrays.wrap(items));
+    }
+
+    /**
+     * シーケンスを作成します。
+     * @param items 要素
+     * @return      シーケンス
+     */
+    public static Sequence<Boolean> of(boolean[] items) {
+        return of(PrimitiveArrays.wrap(items));
+    }
+
+    /**
+     * シーケンスを作成します。
+     * @param items 要素
+     * @return      シーケンス
+     */
+    public static Sequence<Character> of(char[] items) {
+        return of(PrimitiveArrays.wrap(items));
+    }
+
+    /**
      * シーケンスを作成します。現状の実装では {@link Collections#list} を利用しているため先行評価となります。
      * @param items 要素
      * @param <T>   要素の型
