@@ -135,6 +135,17 @@ public class SequenceTest {
     }
 
     @Test
+    public void testIndexOf() throws Exception {
+        assertEquals(-1, Sequence.of("aa", "bb", "cc", "dd").indexOf("ab"));
+        assertEquals(0, Sequence.of("aa", "bb", "cc", "dd").indexOf("aa"));
+        assertEquals(3, Sequence.of("aa", "bb", "cc", "dd").indexOf("dd"));
+
+        assertEquals(-1, Sequence.of("aa", "bb", "cc", "dd").indexOf(s -> s.startsWith("e")));
+        assertEquals(0, Sequence.of("aa", "bb", "cc", "dd").indexOf(s -> s.startsWith("a")));
+        assertEquals(3, Sequence.of("aa", "bb", "cc", "dd").indexOf(s -> s.startsWith("d")));
+    }
+
+    @Test
     public void testContains() throws Exception {
         assertFalse(Sequence.of().contains(1));
         assertTrue(Sequence.of("abc", "def").contains("def"));

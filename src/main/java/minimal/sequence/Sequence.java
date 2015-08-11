@@ -429,18 +429,54 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
+     * 指定されたオブジェクトに一致する最初の要素のインデックスを取得します。条件を満たす要素が含まれていない場合は -1 を返します。
+     * @param object オブジェクト
+     * @return       オブジェクトに一致する最初の要素のインデックス
+     */
+    public int indexOf(T object) {
+        int i = 0;
+        for (T item : items) {
+            if (Objects.equals(item, object)) {
+                return i;
+            }
+            ++i;
+        }
+        return -1;
+    }
+
+    /**
+     * 条件を満たす最初の要素のインデックスを取得します。条件を満たす要素が含まれていない場合は -1 を返します。
+     * @param predicate 条件
+     * @return          条件を満たす最初の要素のインデックス
+     */
+    public int indexOf(Predicate<? super T> predicate) {
+        int i = 0;
+        for (T item : items) {
+            if (predicate.test(item)) {
+                return i;
+            }
+            ++i;
+        }
+        return -1;
+    }
+
+    // YAGNI
+    // int indexesOfAny(T... objects);
+    // int indexesOfAny(Predicate<? super T>... predicate);
+    // Sequence<Integer> indexesOf(Predicate<? super T> predicate);
+
+    /**
      * 指定されたオブジェクトが含まれているかどうかを調べます。
      * @param object オブジェクト
      * @return       指定されたオブジェクトが含まれている場合は true, そうでない場合は false
      */
     public boolean contains(T object) {
-        for (T item : items) {
-            if (Objects.equals(item, object)) {
-                return true;
-            }
-        }
-        return false;
+        return indexOf(object) != -1;
     }
+
+    // YAGNI
+    // boolean containsAny(T... objects);
+    // boolean containsAll(T... objects);
 
     /**
      * 条件を満たす要素が含まれているかどうかを調べます。
@@ -448,12 +484,7 @@ public final class Sequence<T> implements Iterable<T> {
      * @return          条件を満たす要素が含まれている場合は true, そうでない場合は false
      */
     public boolean any(Predicate<? super T> predicate) {
-        for (T item : items) {
-            if (predicate.test(item)) {
-                return true;
-            }
-        }
-        return false;
+        return indexOf(predicate) != -1;
     }
 
     /**
