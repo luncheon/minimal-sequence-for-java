@@ -2,6 +2,7 @@ package minimal.sequence;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -192,6 +193,16 @@ public class SequenceTest {
         assertEquals("1, 2, 3", Sequence.of(1, 2, 3).joinToString(", "));
         assertEquals("1", Sequence.of(1).joinToString(", "));
         assertEquals("", Sequence.of().joinToString(", "));
+    }
+
+    @Test
+    public void testAddTo() throws Exception {
+        assertEquals(new ArrayList<>(Arrays.asList(1, 2, 3, 4)), Sequence.of(3, 4).addTo(new ArrayList<>(Arrays.asList(1, 2))));
+    }
+
+    @Test
+    public void testToArrayList() throws Exception {
+        assertEquals(new ArrayList<>(Arrays.asList(1, 2, 3, 4)), Sequence.of(1, 2, 3, 4).toArrayList());
     }
 
     @Test

@@ -574,15 +574,24 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
+     * 全要素をコレクションに追加します。
+     * @param collection    コレクション
+     * @param <C>           コレクションの型
+     * @return              コレクション
+     */
+    public <C extends Collection<? super T>> C addTo(C collection) {
+        for (T item : items) {
+            collection.add(item);
+        }
+        return collection;
+    }
+
+    /**
      * {@link ArrayList} を生成します。
      * @return {@link ArrayList}
      */
     public ArrayList<T> toArrayList() {
-        ArrayList<T> result = new ArrayList<T>();
-        for (T item : items) {
-            result.add(item);
-        }
-        return result;
+        return addTo(new ArrayList<T>());
     }
 
     /**
