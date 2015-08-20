@@ -349,6 +349,36 @@ public final class Sequence<T> implements Iterable<T> {
     }
 
     /**
+     * 先頭から指定数だけ要素を抽出します。
+     * @param count 抽出要素数
+     * @return      指定数要素のシーケンス
+     */
+    public Sequence<T> take(int count) {
+        final int[] _count = new int[]{count};
+        return takeWhile(new Predicate<T>() {
+            @Override
+            public boolean test(T t) {
+                return --_count[0] >= 0;
+            }
+        });
+    }
+
+    /**
+     * 先頭から指定数だけ要素を除外します。
+     * @param count 抽出要素数
+     * @return      指定数要素のシーケンス
+     */
+    public Sequence<T> skip(int count) {
+        final int[] _count = new int[]{count};
+        return skipWhile(new Predicate<T>() {
+            @Override
+            public boolean test(T t) {
+                return --_count[0] >= 0;
+            }
+        });
+    }
+
+    /**
      * 末尾へ要素を追加します。
      * @param after 追加要素
      * @return      シーケンス

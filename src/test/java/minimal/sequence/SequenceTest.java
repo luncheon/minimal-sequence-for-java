@@ -102,6 +102,20 @@ public class SequenceTest {
     }
 
     @Test
+    public void testTake() throws Exception {
+        assertEquals(Sequence.of(1, 2, 3), Sequence.of(1, 2, 3, 4, 5).take(3));
+        assertEquals(Sequence.of(1, 2, 3), Sequence.of(1, 2, 3).take(5));
+        assertEquals(Sequence.of(), Sequence.of().take(2));
+    }
+
+    @Test
+    public void tesSkip() throws Exception {
+        assertEquals(Sequence.of(4, 5), Sequence.of(1, 2, 3, 4, 5).skip(3));
+        assertEquals(Sequence.of(), Sequence.of(1, 2, 3).skip(5));
+        assertEquals(Sequence.of(), Sequence.of().skip(2));
+    }
+
+    @Test
     public void testAppend() throws Exception {
         assertEquals(Sequence.<String>of("ab", "cd", "ef", "gh"), Sequence.of("ab", "cd").append("ef", "gh"));
         assertEquals(Sequence.<String>of("ef", "gh"), Sequence.of().append("ef", "gh"));
